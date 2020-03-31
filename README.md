@@ -21,7 +21,7 @@
 
 Vi skriver vores backend i java, og har tænkt os at implementere wishfull programming og interfaces for at gøre backenden mere abstract.
 
-- Måske streams ind over her?
+
 
 ### Threading og multi processing:
 
@@ -35,6 +35,8 @@ legend:
 
 [Data]-> {data handler} -> {Analyst thread} -> [Analysed package] -> {Sumary thread}.
 
+### Streams?
+Vi kan godt finde brug af streams ind over div threads i projektet.
 
 ### Funktionel Programming:
 
@@ -43,7 +45,7 @@ Vi kunne godt tænke os at implementere et andet programerings sprog i projektet
 evt. funktionalitet.
 
 - Tjek data integritet.
-- Nwordcount bot (chat analyse).
+- chat analyse.
 - Spam filter (har vi allerede analyseret dataen?).
 - udføre en kill kommand på opgaven hvis den er irrelevant eller dårlig.
 - Være vores data handler.
