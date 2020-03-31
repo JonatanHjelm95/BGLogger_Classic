@@ -1,5 +1,3 @@
-Project Scope
-
 # WoW Addon Project:
 
 ## Definition of project:
@@ -13,15 +11,41 @@ Project Scope
 - Hvor meget sloges du omkring objectives.
 - Honor/Death Rating.
 - Utility Usage.
-
-How to:
-Når data kommer ind, deler vi det ud til forskellige tråde så processen i at analysere det ikke bliver for front tung.
-
-[Data]-> {data handler} -> {analyst thread} -> [Analysed package] -> {Sumary thread}
+- Objective rating
+- why i don dedded?
 
 
 ## Lærings mål and where to find them:
 
 ### Wishfull programming og abstraction:
 
-Vi skriver vores backend i java, og har tænkt os at implementere wishfull programming og interfaces for at gøre backenden mere abstract og 
+Vi skriver vores backend i java, og har tænkt os at implementere wishfull programming og interfaces for at gøre backenden mere abstract.
+
+### Threading og multi processing:
+
+Når vi får data ind kunne vi godt tænke os at bruge en masse threading til at håndtere alle de tasks der skal gennemføres. Vi skal derfor sørge for at indele vores analyse i nogen spor, som skal bruge data fra hinanden for at gennemføre den færdige analyse. Og når analysen er færdig, skal den gå igang med en sammenlignings analyse af en anden spiller, hvilket kræver at hans analyse er færdig.
+
+vi tænker at en tråd kommer til at se således ud:
+
+legend: 
+- [] er data pakker.
+- {} er threads.
+
+[Data]-> {data handler} -> {Analyst thread} -> [Analysed package] -> {Sumary thread}.
+
+
+### Funktionel Programming:
+
+Vi kunne godt tænke os at implementer et andet programirings sprog i projektet. Vi tænker umidelbart Hascell, men hvilket som helst ville kunne gå an.
+
+evt. funktionalitet.
+
+- Tjek data integritet.
+- Nwordcount bot (chat analyse).
+- Spam filter (har vi allerede analyseret dataen?).
+- udføre en kill kommand på opgaven hvis den er irrelevant eller dårlig.
+- Være vores data handler.
+- Være vores sumary handler.
+
+
+
