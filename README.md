@@ -36,7 +36,7 @@ legend:
 
 ### Funktionel Programming:
 
-Vi kunne godt tænke os at implementer et andet programirings sprog i projektet. Vi tænker umidelbart Hascell, men hvilket som helst ville kunne gå an.
+Vi kunne godt tænke os at implementere et andet programerings sprog i projektet. Vi tænker umiddelbart Hascell, men hvilket som helst ville kunne gå an.
 
 evt. funktionalitet.
 
