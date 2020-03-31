@@ -1,6 +1,6 @@
 ## Interface: 11304
-## Title: BGLogger_Classic
-## Author: Jonatan Hjelm og Martin Wulff
+## Title: BGLogger
+## Author: D-bag
 ## Version: 1.0
 
-DataCollector.lua
+main.lua
