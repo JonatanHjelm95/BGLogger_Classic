@@ -21,6 +21,8 @@
 
 Vi skriver vores backend i java, og har tænkt os at implementere wishfull programming og interfaces for at gøre backenden mere abstract.
 
+- Måske streams ind over her?
+
 ### Threading og multi processing:
 
 Når vi får data ind kunne vi godt tænke os at bruge en masse threading til at håndtere alle de tasks der skal gennemføres. Vi skal derfor sørge for at indele vores analyse i nogen spor, som skal bruge data fra hinanden for at gennemføre den færdige analyse. Og når analysen er færdig, skal den gå igang med en sammenlignings analyse af en anden spiller, hvilket kræver at hans analyse er færdig.
