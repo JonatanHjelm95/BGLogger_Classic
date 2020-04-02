@@ -1,7 +1,15 @@
-local Congrats_EventFrame = CreateFrame("Frame")
-Congrats_EventFrame:RegisterEvent("CHAT_MSG_BG_SYSTEM_NEUTRAL")
-Congrats_EventFrame:SetScript("OnEvent",
-	function(self, event, ...)
-		local arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 = ...
-		print(toString(arg1))
-	end)
+local _frame = CreateFrame("Frame")
+local _frame1 = CreateFrame("Frame")
+local t0 = time()
+_frame1:RegisterEvent("PLAYER_TARGET_CHANGED")
+_frame1:SetScript(
+    "OnEvent",
+    function(self, event, ...)
+        --local map  = SetMapToCurrentZone()
+        print("Target Changed")
+        --print(toString(arg1))
+    end
+)
+
+
+
