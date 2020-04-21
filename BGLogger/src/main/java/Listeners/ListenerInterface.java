@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Analasys;
+package Listeners;
 
 /**
  *
  * @author Martin
  */
-public abstract class Analasys {
+public interface ListenerInterface {
+    public void invoke();
     
 }

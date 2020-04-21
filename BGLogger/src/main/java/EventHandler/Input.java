@@ -25,7 +25,7 @@ public class Input implements EventInterface{
     @Override
     public void Handle() {
         EventHandler handler = EventHandler.getInstance();
-        handler.addEvent(new Duel("ree"));
+        handler.addEvent(new Duel());
     }
 
     @Override
@@ -37,5 +37,5 @@ public class Input implements EventInterface{
     public void setData(String data) {
         _data = data;
     }
-    
+
 }

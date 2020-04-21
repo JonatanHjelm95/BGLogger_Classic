@@ -19,7 +19,7 @@ enum EventType {
 }
 
 public interface EventInterface{
-    public void setType(EventType ET);
+
     public void setData(String data);
     public EventType getEventType();
     public void Handle();
