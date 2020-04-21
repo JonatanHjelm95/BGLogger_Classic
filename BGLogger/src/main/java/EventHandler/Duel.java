@@ -11,12 +11,17 @@ import java.util.List;
  *
  * @author Martin
  */
-public class InputHandler implements EventInterface{
-    
+public class Duel implements EventInterface {
+    EventType _event = EventType.DUEL;
     
     @Override
-    public EventType getEventType() {
+    public void setData(String data) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public EventType getEventType() {
+        return _event;
     }
 
     @Override
@@ -26,16 +31,6 @@ public class InputHandler implements EventInterface{
 
     @Override
     public <T> List<T> getResult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setType(EventType ET) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setData(String data) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
