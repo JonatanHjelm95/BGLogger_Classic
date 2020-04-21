@@ -18,7 +18,7 @@ enum EventType {
   MISC
 }
 
-public interface EventInterface{
+public interface Event{
 
     public void setData(String data);
     public EventType getEventType();

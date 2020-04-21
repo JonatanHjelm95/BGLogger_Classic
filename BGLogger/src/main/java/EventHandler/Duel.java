@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Martin
  */
-public class Duel implements EventInterface {
+public class Duel implements Event {
     EventType _event = EventType.DUEL;
     
     @Override

@@ -5,10 +5,19 @@
  */
 package Listeners;
 
+import EventHandler.Event;
+
 /**
  *
  * @author Martin
  */
-public class DuelListener {
+public class DuelListener implements ListenerInterface{
+    
+    
+
+    @Override
+    public void invoke(Event _event) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

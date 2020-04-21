@@ -5,6 +5,8 @@
  */
 package mn.bglogger;
 
+import EventHandler.Event;
+import EventHandler.Input;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -55,6 +57,7 @@ public class ReeeResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void postJson(String content){
-        
+        Event input = new Input();
+        input.setData(content);
     }
 }

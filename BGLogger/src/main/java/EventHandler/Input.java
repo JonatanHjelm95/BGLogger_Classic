@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Martin
  */
-public class Input implements EventInterface{
+public class Input implements Event{
     
     private final EventType _type = EventType.INPUT;
     String _data; 
