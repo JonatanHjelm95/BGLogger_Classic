@@ -2,6 +2,7 @@
 ## Title: BGLogger_Classic
 ## Author: Jonatan Hjelm og Martin Wulff
 ## Version: 1.0
+##SavedVariables: DamageLog
 
 main.lua
 logger.lua

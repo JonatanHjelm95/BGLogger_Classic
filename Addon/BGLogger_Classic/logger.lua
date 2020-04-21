@@ -27,38 +27,31 @@ if 1 == 1 then
         end
     )
 
--- Damage done function
+-- Combat Event logger function
     if inCombatFrame:RegisterEvent("PLAYER_REGEN_DISABLED") then
         combatEventFrame:RegisterEvent("COMBAT_LOG_EVENT")
         combatEventFrame:SetScript("OnEvent",
             function (self, event, ...)
                 local eventInfo = {CombatLogGetCurrentEventInfo()}
-                event = {timestamp  = 0, type = '', damage = 0, ability = '', target = ''}
+                event = {timestamp  = 0, type = '', amount = 0, ability = '', target = '', crit = nil}
                 --print(CombatLogGetCurrentEventInfo())
                 -- Timestamp at index 0
                 -- Attack Type at index 2
                 -- Attacked target at index 9
-                -- Damage done at index 12
-                -- Ranged damage at index 15
-                --print('Type: ' .. eventInfo[2])
-                event.timestamp = eventInfo[0]
+                -- amount done at index 12
+                -- Ranged amount at index 15
+                event.timestamp = eventInfo[1]
                 event.type = eventInfo[2]
                 if eventInfo[2] == 'SWING_DAMAGE' then
-                    --print('Damage: ' .. eventInfo[12])
-                    event.damage = eventInfo[12]
-                    --totalDamage = totalDamage + eventInfo[12]
+                    event.amount = eventInfo[12]
+                    event.crit = eventInfo[21]
                 else
-                    --print('Damage: ' .. eventInfo[15])
-                    --print('Ability: ' .. eventInfo[13])
-                    event.damage = eventInfo[15]
+                    event.amount = eventInfo[15]
                     event.ability = eventInfo[13]
-                    --totalDamage = totalDamage + eventInfo[15]
+                    event.crit = eventInfo[21]
                 end
-                --print('Target: ' .. eventInfo[9])
                 event.target = eventInfo[9]
-                --Encounter.event = event
-                --print('Ranged: ' ..eventInfo[15])
-                --print(CombatLogGetCurrentEventInfo())
+                -- Appending event to Encounter
                 Encounter[#Encounter+1]=event
             end
         )
@@ -67,21 +60,26 @@ if 1 == 1 then
     outOfCombatFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
     outOfCombatFrame:SetScript("OnEvent",
         function (self, event, ...)
+            -- Appending Encounter to Encounter(s) and resetting Encounter
             Encounters[#Encounters+1] = Encounter
             Encounter = {}
-            local totalDamage = 0
+            local file = io.open('damageLog.txt', "w")
+            file:write('Encounters', "\n")
             for index, data in ipairs(Encounters) do
-                print(index)
-            
+                --print(index)
+                file:write('\t', 'Encounter'.. index, '\n')
                 for key, event in pairs(data) do
-                    --print('\t', key, event.damage)
-                    print('\t', event.damage)
-                    if not event.damage == nil then
-                        totalDamage = totalDamage + tonumber(event.damage)
-                    end
+                    file:write('\t', '\t', 'Timestamp: ' .. event.timestamp .. '\n')
+                    file:write('\t', '\t', 'Type: ' .. event.type .. '\n')
+                    file:write('\t', '\t', 'amount: ' .. event.amount .. '\n')
+                    file:write('\t', '\t', 'Ability: ' .. event.ability .. '\n')
+                    file:write('\t', '\t', 'Target: ' .. event.target .. '\n')
+                    file:write('\t', '\t', 'crit: ' .. event.crit .. '\n')
+                    --print('\t', key, event.amount)
+                    --print('\t', event.amount, event.crit)
                 end
             end
-            print('Total Damage: ',totalDamage)
+            file:close()
         end
     )
 
