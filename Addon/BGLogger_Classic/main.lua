@@ -1,3 +1,4 @@
+
 local _frame = CreateFrame("Frame")
 local _frame1 = CreateFrame("Frame")
 local t0 = time()
@@ -11,5 +12,6 @@ _frame1:SetScript(
     end
 )
 
-
-
+local file = io.open('testLogger.txt', 'w')
+file:write('test')
+file:close()
