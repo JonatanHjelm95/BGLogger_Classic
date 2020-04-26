@@ -22,11 +22,4 @@ public class AnalasysHandler {
 
     }
 
-    public static AnalasysHandler getInstance() {
-        if (Instance == null) {
-            Instance = new AnalasysHandler();
-        }
-
-        return Instance;
-    }
 }
