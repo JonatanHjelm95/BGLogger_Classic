@@ -14,13 +14,17 @@ import Listeners.ListenerInterface;
  *
  * @author jonab
  */
+
+
 public class main {
+    private static int test = 0;
     public static void main(String[] args) {
         System.out.println("Main Startet");
         EventHandler eh = EventHandler.getInstance();
         eh.addListener(MyEventType.INPUT, new InputListener());
         eh.addListener(MyEventType.DUEL, new DuelListener());
-        ListenerInterface listener = (Event evt) ->{System.out.println("neeej! et lambda udtryk!");};
+        
+        ListenerInterface listener = (Event evt) ->{System.out.println("neeej! et lambda udtryk! "+test); test++;};
         eh.addListener(MyEventType.INPUT, listener);
         Event evt = new Input();
         
