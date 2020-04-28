@@ -23,12 +23,6 @@ public class Input implements Event{
     }
 
     @Override
-    public void Handle() {
-        EventHandler handler = EventHandler.getInstance();
-        handler.addEvent(new Duel());
-    }
-
-    @Override
     public List<Integer> getResult() {
         return result;
     }

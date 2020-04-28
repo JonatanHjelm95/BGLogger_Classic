@@ -22,7 +22,6 @@ public interface Event{
 
     public void setData(String data);
     public EventType getEventType();
-    public void Handle();
     public <T> List<T> getResult();
     
 }

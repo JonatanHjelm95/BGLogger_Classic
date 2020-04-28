@@ -5,28 +5,23 @@
  */
 package Listeners;
 
+import EventHandler.Duel;
 import EventHandler.Event;
 import EventHandler.EventHandler;
-import EventHandler.Input;
-import javafx.event.EventType;
+
 
 /**
  *
  * @author Martin
  */
-public class DuelListener implements ListenerInterface{
-    
-    public DuelListener(){
-        
-    }
+public class InputListener implements ListenerInterface{
 
     @Override
     public void invoke(Event _event) {
-        System.out.println("reee" +_event);
-        Event _event2 = new Input();
+        System.out.println("oooo" +_event.getEventType());
+        Event _event2 = new Duel();
         _event2.setData("boop");
         EventHandler.getInstance().addEvent(_event2);
-        
     }
-    
+
 }

@@ -24,10 +24,6 @@ public class Duel implements Event {
         return _event;
     }
 
-    @Override
-    public void Handle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public <T> List<T> getResult() {
