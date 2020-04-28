@@ -57,7 +57,8 @@ public class EventHandler {
     ReentrantLock lock = new ReentrantLock();
 
     public void addEvent(Event _event) {
-        lock.lock();
+        System.out.println("adding event!");
+        lock.tryLock();
         try {
             eventQue.add(_event);
         } finally {
@@ -67,15 +68,17 @@ public class EventHandler {
 
     private Event getEvent() throws Exception {
         while (eventQue.size() <= 0) {
-            sleep(1);
+            sleep(100);
         }
-        lock.lock();
+        lock.tryLock();
         try {
+            System.out.println("AN EVENT!");
             Event _event = eventQue.get(0);
-            eventQue.remove(0);
+            eventQue.remove(0);          
             return _event;
         } finally {
             lock.unlock();
+            
         }
     }
 
@@ -85,16 +88,21 @@ public class EventHandler {
             List<ListenerInterface> _list = new ArrayList<>();
             _list.add(listener);
             Listeners.put(_type, _list);
+            System.out.println("Listener added and list allocated.");
+                    
         } else {
             _listeners.add(listener);
+            System.out.println("Listener added.");
         }
     }
 
     private void invokeListeners(Event _event) {
-        ExecutorService executor = Executors.newFixedThreadPool(1);
+        ExecutorService executor = Executors.newCachedThreadPool();
         Runnable task = () -> {
-            for (ListenerInterface _listener : Listeners.get(_event)) {
+            List<ListenerInterface> _listeners = Listeners.get(_event.getEventType());
+            for (ListenerInterface _listener : Listeners.get(_event.getEventType())) {
                 _listener.invoke(_event);
+                System.out.println("invoked a listener");
             }
         };
         executor.submit(task);

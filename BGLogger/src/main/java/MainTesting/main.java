@@ -15,6 +15,7 @@ import Listeners.InputListener;
  */
 public class main {
     public static void main(String[] args) {
+        System.out.println("Main Startet");
         EventHandler eh = EventHandler.getInstance();
         eh.addListener(MyEventType.INPUT, new InputListener());
         eh.addListener(MyEventType.DUEL, new DuelListener());
@@ -22,5 +23,6 @@ public class main {
         Event evt = new Input();
         
         eh.addEvent(evt);
+        System.out.println("Event Added");
     }
 }

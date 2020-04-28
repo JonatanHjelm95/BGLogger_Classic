@@ -22,9 +22,8 @@ public class DuelListener implements ListenerInterface{
 
     @Override
     public void invoke(Event _event) {
-        System.out.println("reee" +_event);
+        System.out.println("reee " +_event);
         Event _event2 = new Input();
-        _event2.setData("boop");
         EventHandler.getInstance().addEvent(_event2);
         
     }
