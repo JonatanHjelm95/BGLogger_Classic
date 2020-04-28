@@ -9,6 +9,14 @@ package Analasys;
  *
  * @author Martin
  */
-public abstract class Analasys {
+
+enum AnalasysTypes{
+    DPS,
+    Somtehin
+}
+public interface Analasys {
+    public void addData(String _data);
+    public Runnable run();
+    
     
 }

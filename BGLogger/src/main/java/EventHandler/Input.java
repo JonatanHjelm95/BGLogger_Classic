@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Martin
  */
-public class Input implements EventInterface{
+public class Input implements Event{
     
     private final EventType _type = EventType.INPUT;
     String _data; 
@@ -20,12 +20,6 @@ public class Input implements EventInterface{
     @Override
     public EventType getEventType() {
         return _type;
-    }
-
-    @Override
-    public void Handle() {
-        EventHandler handler = EventHandler.getInstance();
-        handler.addEvent(new Duel());
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Martin
  */
-public class Duel implements EventInterface {
+public class Duel implements Event {
     EventType _event = EventType.DUEL;
     
     @Override
@@ -24,10 +24,6 @@ public class Duel implements EventInterface {
         return _event;
     }
 
-    @Override
-    public void Handle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public <T> List<T> getResult() {

@@ -5,11 +5,13 @@
  */
 package Listeners;
 
+import EventHandler.Event;
+
 /**
  *
  * @author Martin
  */
 public interface ListenerInterface {
-    public void invoke();
+    public void invoke(Event _event);
     
 }
