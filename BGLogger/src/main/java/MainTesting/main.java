@@ -8,6 +8,7 @@ package MainTesting;
 import EventHandler.*;
 import Listeners.DuelListener;
 import Listeners.InputListener;
+import Listeners.ListenerInterface;
 
 /**
  *
@@ -19,7 +20,8 @@ public class main {
         EventHandler eh = EventHandler.getInstance();
         eh.addListener(MyEventType.INPUT, new InputListener());
         eh.addListener(MyEventType.DUEL, new DuelListener());
-        
+        ListenerInterface listener = (Event evt) ->{System.out.println("neeej! et lambda udtryk!");};
+        eh.addListener(MyEventType.INPUT, listener);
         Event evt = new Input();
         
         eh.addEvent(evt);
