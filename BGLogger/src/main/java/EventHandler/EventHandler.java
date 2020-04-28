@@ -53,7 +53,7 @@ public class EventHandler {
         return Instance;
     }
 
-    private List<Event> eventQue;
+    private List<Event> eventQue = new ArrayList<>();
     ReentrantLock lock = new ReentrantLock();
 
     public void addEvent(Event _event) {

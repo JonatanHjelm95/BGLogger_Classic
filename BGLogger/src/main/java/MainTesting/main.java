@@ -5,7 +5,9 @@
  */
 package MainTesting;
 
-import EventHandler.EventHandler;
+import EventHandler.*;
+import Listeners.DuelListener;
+import Listeners.InputListener;
 
 /**
  *
@@ -14,7 +16,11 @@ import EventHandler.EventHandler;
 public class main {
     public static void main(String[] args) {
         EventHandler eh = EventHandler.getInstance();
+        eh.addListener(MyEventType.INPUT, new InputListener());
+        eh.addListener(MyEventType.DUEL, new DuelListener());
         
+        Event evt = new Input();
         
+        eh.addEvent(evt);
     }
 }
