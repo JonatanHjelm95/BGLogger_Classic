@@ -13,12 +13,12 @@ import java.util.List;
  */
 public class Input implements Event{
     
-    private final EventType _type = EventType.INPUT;
+    private final MyEventType _type = MyEventType.INPUT;
     String _data; 
     private List<Integer> result;
     
     @Override
-    public EventType getEventType() {
+    public MyEventType getEventType() {
         return _type;
     }
 

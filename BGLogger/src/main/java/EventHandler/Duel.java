@@ -12,7 +12,7 @@ import java.util.List;
  * @author Martin
  */
 public class Duel implements Event {
-    EventType _event = EventType.DUEL;
+    MyEventType _event = MyEventType.DUEL;
     
     @Override
     public void setData(String data) {
@@ -20,7 +20,7 @@ public class Duel implements Event {
     }
 
     @Override
-    public EventType getEventType() {
+    public MyEventType getEventType() {
         return _event;
     }
 

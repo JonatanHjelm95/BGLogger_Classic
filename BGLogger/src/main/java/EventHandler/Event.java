@@ -12,7 +12,7 @@ import java.util.List;
  * @author Martin
  */
 
-enum EventType {
+enum MyEventType {
   INPUT,
   DUEL,
   MISC
@@ -21,7 +21,7 @@ enum EventType {
 public interface Event{
 
     public void setData(String data);
-    public EventType getEventType();
+    public MyEventType getEventType();
     public <T> List<T> getResult();
     
 }

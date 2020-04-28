@@ -28,7 +28,7 @@ public class EventHandler {
 
     public boolean Finished = false;
 
-    private Map< EventType, List<ListenerInterface>> Listeners = new HashMap<>();
+    private Map< MyEventType, List<ListenerInterface>> Listeners = new HashMap<>();
 
     private EventHandler() {
         ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -79,7 +79,7 @@ public class EventHandler {
         }
     }
 
-    public void addListener(EventType _type, ListenerInterface listener) {
+    public void addListener(MyEventType _type, ListenerInterface listener) {
         List<ListenerInterface> _listeners = Listeners.get(_type);
         if (_listeners == null) {
             List<ListenerInterface> _list = new ArrayList<>();
