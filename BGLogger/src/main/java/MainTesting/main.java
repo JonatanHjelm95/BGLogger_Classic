@@ -41,7 +41,7 @@ public class main {
 
         System.out.println("Event Added");
          */
-        ActionAnalysis act = new ActionAnalysis();
+        ActionAnalysis act = new ActionAnalysis("metoo");
         EventHandler eh = EventHandler.getInstance();
         Class obj = act.getClass();
         Method[] methods = obj.getMethods();

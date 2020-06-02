@@ -14,15 +14,11 @@ import java.util.List;
  *
  * @author Martin
  */
-public class ActionAnalysis extends Analysis
-{
+public class ActionAnalysis extends Analysis {
 
-
-    List<Event> AgressiveActions = new ArrayList<>();
-    List<Event> BuffActions = new ArrayList<>();
-    List<Event> SupportActions = new ArrayList<>();
-    List<Event> ConsumableActions = new ArrayList<>();
-    List<Event> UnknownActions = new ArrayList<>();
+    List<Event> Attempts = new ArrayList<>();
+    List<Event> Succeses = new ArrayList<>();
+    List<Event> Fails = new ArrayList<>();
 
     public ActionAnalysis(String _initiator) {
         super(_initiator);
@@ -30,19 +26,34 @@ public class ActionAnalysis extends Analysis
 
     @Override
     void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
-    @Listener
-    public void AnyEvent(Event evt) {
+    @Listener(event = MyEventType.SPELL_CAST_START)
+    public void castAttempt(Event evt) {
         if (evt.getInitiator().equals(this.initiator)) {
-            switch (evt.getEventType()) {
-                case ANY :
-                default:
-                    UnknownActions.add(evt);
-            }
-
+            Attempts.add(evt);
         }
     }
 
+    @Listener(event = MyEventType.SPELL_AURA_APPLIED)
+    public void SuccesAura(Event evt) {
+        if (evt.getInitiator().equals(this.initiator)) {
+            Succeses.add(evt);
+        }
+    }
+
+    @Listener(event = MyEventType.SPELL_CAST_SUCCESS)
+    public void SuccesCast(Event evt) {
+        if (evt.getInitiator().equals(this.initiator)) {
+            Succeses.add(evt);
+        }
+    }
+
+    @Listener(event = MyEventType.SPELL_CAST_FAILED)
+    public void FailedCast(Event evt) {
+        if (evt.getInitiator().equals(this.initiator)) {
+            Fails.add(evt);
+        }
+    }
 }
