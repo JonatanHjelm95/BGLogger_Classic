@@ -5,22 +5,31 @@
  */
 package MainTesting;
 
+import Analasys.ActionAnalasys;
 import EventHandler.*;
 import Listeners.DuelListener;
 import Listeners.InputListener;
+import Listeners.Listener;
+import Listeners.ListenerHolder;
 import Listeners.ListenerInterface;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author jonab
  */
-
-
 public class main {
+
     private static int test = 0;
+
     public static void main(String[] args) {
-        System.out.println("Main Startet");
-        EventHandler eh = EventHandler.getInstance();
+        /*
+        
         eh.addListener(MyEventType.INPUT, new InputListener());
         eh.addListener(MyEventType.DUEL, new DuelListener());
         
@@ -29,6 +38,27 @@ public class main {
         Event evt = new Input();
         
         eh.addEvent(evt);
+
         System.out.println("Event Added");
+         */
+        ActionAnalasys act = new ActionAnalasys();
+        EventHandler eh = EventHandler.getInstance();
+        Class obj = act.getClass();
+        Method[] methods = obj.getMethods();
+        List<ListenerHolder> listners = new ArrayList<>();
+        for (Method method : obj.getMethods()) {
+            if (method.isAnnotationPresent(Listener.class)) {
+                Listener l = method.getAnnotation(Listener.class);
+                listners.add(new ListenerHolder(method,act));     
+                eh.addListener(l.event(), new ListenerHolder(method,act));
+            }
+        }
+        
+        
+        Event evt = new Input();
+        
+        eh.addEvent(evt);
+        //listners.get(0).invoke(null);
+        
     }
 }

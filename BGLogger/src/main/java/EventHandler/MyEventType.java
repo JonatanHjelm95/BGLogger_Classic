@@ -12,5 +12,6 @@ package EventHandler;
 public enum MyEventType {
     INPUT,
     DUEL,
-    MISC
+    MISC,
+    ANY
 }

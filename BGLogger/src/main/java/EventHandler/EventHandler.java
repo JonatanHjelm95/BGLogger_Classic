@@ -5,7 +5,7 @@
  */
 package EventHandler;
 
-import Listeners.ListenerInterface;
+import Listeners.*;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class EventHandler {
 
     public boolean Finished = false;
 
-    private Map< MyEventType, List<ListenerInterface>> Listeners = new HashMap<>();
+    private Map< MyEventType, List<ListenerHolder>> Listeners = new HashMap<>();
 
     private EventHandler() {
         ExecutorService executor = Executors.newFixedThreadPool(1);
@@ -74,22 +74,22 @@ public class EventHandler {
         try {
             System.out.println("AN EVENT!");
             Event _event = eventQue.get(0);
-            eventQue.remove(0);          
+            eventQue.remove(0);
             return _event;
         } finally {
             lock.unlock();
-            
+
         }
     }
 
-    public void addListener(MyEventType _type, ListenerInterface listener) {
-        List<ListenerInterface> _listeners = Listeners.get(_type);
+    public void addListener(MyEventType _type, ListenerHolder listener) {
+        List<ListenerHolder> _listeners = Listeners.get(_type);
         if (_listeners == null) {
-            List<ListenerInterface> _list = new ArrayList<>();
+            List<ListenerHolder> _list = new ArrayList<>();
             _list.add(listener);
             Listeners.put(_type, _list);
             System.out.println("Listener added and list allocated.");
-                    
+
         } else {
             _listeners.add(listener);
             System.out.println("Listener added.");
@@ -98,14 +98,29 @@ public class EventHandler {
 
     private void invokeListeners(Event _event) {
         ExecutorService executor = Executors.newCachedThreadPool();
-        Runnable task = () -> {
-            List<ListenerInterface> _listeners = Listeners.get(_event.getEventType());
-            for (ListenerInterface _listener : Listeners.get(_event.getEventType())) {
-                _listener.invoke(_event);
-                System.out.println("invoked a listener");
-            }
-        };
-        executor.submit(task);
+        if (Listeners.get(MyEventType.ANY) != null) {
+            Runnable task0 = () -> {
+                //List<ListenerHolder> _listeners = Listeners.get(MyEventType.ANY);
+                for (ListenerHolder _listener : Listeners.get(MyEventType.ANY)) {
+                    _listener.invoke(_event);
+                    System.out.println("invoked a listener");
+                }
+                System.out.println("done0");
+            };
+            executor.submit(task0);
+        }
+        System.out.println(Listeners.get(_event.getEventType())== null );
+        if (Listeners.get(_event.getEventType())!= null) {
+            Runnable task1 = () -> {
+                //List<ListenerHolder> _listeners = Listeners.get(_event.getEventType());
+                for (ListenerHolder _listener : Listeners.get(_event.getEventType())) {
+                    _listener.invoke(_event);
+                    System.out.println("invoked a listener");
+                }
+                System.out.println("done1");
+            };
+            executor.submit(task1);
+        }
         executor.shutdown();
     }
 
