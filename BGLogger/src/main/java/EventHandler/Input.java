@@ -11,12 +11,14 @@ import java.util.List;
  *
  * @author Martin
  */
-public class Input implements Event{
-    
-    private final MyEventType _type = MyEventType.INPUT;
-    String _data; 
+public class Input implements Event {
+
+    private final MyEventType _type = MyEventType.SPELL_AURA_APPLIED;
+    String _date;
+    String _time;
+    String[] _data;
     private List<Integer> result;
-    
+
     @Override
     public MyEventType getEventType() {
         return _type;
@@ -28,7 +30,17 @@ public class Input implements Event{
     }
 
     @Override
-    public void setData(String data) {
+    public void setDate(String date) {
+        _date = date;
+    }
+
+    @Override
+    public void setTime(String time) {
+        _time = time;
+    }
+
+    @Override
+    public void setData(String[] data) {
         _data = data;
     }
 

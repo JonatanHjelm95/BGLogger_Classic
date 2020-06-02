@@ -15,8 +15,10 @@ import java.util.List;
 
 
 public interface Event{
-
-    public void setData(String data);
+    
+    public void setDate(String date);
+    public void setTime(String time);
+    public void setData(String[] data);
     public MyEventType getEventType();
     public <T> List<T> getResult();
     

@@ -14,10 +14,10 @@ import java.util.concurrent.Executors;
  *
  * @author Martin
  */
-public class AnalasysHandler {
+public class AnalysisHandler {
     
   
-    private AnalasysHandler() {
+    private AnalysisHandler() {
 
     }
 

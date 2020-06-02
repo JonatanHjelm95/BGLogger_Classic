@@ -13,7 +13,7 @@ import Listeners.Listener;
  *
  * @author Martin
  */
-public class ActionAnalasys implements Analasys
+public class ActionAnalysis extends Analysis
 {
 
     @Override

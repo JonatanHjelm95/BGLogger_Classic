@@ -17,19 +17,19 @@ enum AnalasysTypes {
     Somtehin
 }
 
-public abstract class Analasys {
+public abstract class Analysis {
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     private Runnable AsRunnable() {
         Runnable runnableTask = () -> {
-            settup();
+            setup();
             run();
             shutdown();
         };
         return runnableTask;
     }
-    private void settup(){};
+    private void setup(){};
     
     abstract void run();
 

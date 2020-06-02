@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.*;
 
 /**
  *
@@ -22,13 +25,17 @@ public class CombatLog {
         try {
             reader = new BufferedReader(new FileReader(file));
             String line = reader.readLine();
-            while(line != null){
-                System.out.println(line);
+            while (line != null) {
+                //Splitting on whitespaces IOT get date and time
+                String[] dates = line.split(" ");
+                String date = dates[0];
+                String time = dates[1];
+                String event = dates[3];
+                String[] eventSplit = event.split(",");
                 line = reader.readLine();
             }
             reader.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

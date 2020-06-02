@@ -5,7 +5,7 @@
  */
 package MainTesting;
 
-import Analasys.ActionAnalasys;
+import Analasys.ActionAnalysis;
 import EventHandler.*;
 import Listeners.DuelListener;
 import Listeners.InputListener;
@@ -41,7 +41,7 @@ public class main {
 
         System.out.println("Event Added");
          */
-        ActionAnalasys act = new ActionAnalasys();
+        ActionAnalysis act = new ActionAnalysis();
         EventHandler eh = EventHandler.getInstance();
         Class obj = act.getClass();
         Method[] methods = obj.getMethods();
