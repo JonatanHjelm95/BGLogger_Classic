@@ -18,9 +18,12 @@ enum AnalasysTypes {
 }
 
 public abstract class Analasys {
-
+    private final String initiator;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
-
+    public Analasys(String _initiator){
+        initiator = _initiator;
+    }
+    
     private Runnable AsRunnable() {
         Runnable runnableTask = () -> {
             settup();
@@ -29,6 +32,7 @@ public abstract class Analasys {
         };
         return runnableTask;
     }
+    
     private void settup(){};
     
     abstract void run();

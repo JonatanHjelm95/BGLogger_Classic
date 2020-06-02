@@ -5,6 +5,7 @@
  */
 package FileHandler;
 
+import EventHandler.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +26,10 @@ public class CombatLog {
             while(line != null){
                 System.out.println(line);
                 line = reader.readLine();
+                Event evt = new Event();
+                EventHandler eh = EventHandler.getInstance();
+                eh.addEvent(evt);
+               
             }
             reader.close();
         }

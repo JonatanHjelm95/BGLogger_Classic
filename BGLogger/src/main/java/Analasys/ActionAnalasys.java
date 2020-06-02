@@ -5,9 +5,8 @@
  */
 package Analasys;
 
-import EventHandler.Event;
-import EventHandler.MyEventType;
-import Listeners.Listener;
+import EventHandler.*;
+import Listeners.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +14,17 @@ import java.util.List;
  *
  * @author Martin
  */
-public class ActionAnalasys extends Analasys
-{
+public class ActionAnalasys extends Analasys {
+
+    List<Event> AgressiveActions = new ArrayList<>();
+    List<Event> BuffActions = new ArrayList<>();
+    List<Event> SupportActions = new ArrayList<>();
+    List<Event> ConsumableActions = new ArrayList<>();
+    List<Event> UnknownActions = new ArrayList<>();
+
+    public ActionAnalasys(String _initiator) {
+        super(_initiator);
+    }
 
     @Override
     void run() {
@@ -24,8 +32,15 @@ public class ActionAnalasys extends Analasys
     }
 
     @Listener
-    public void AnyEvent(Event evt){
-        
+    public void AnyEvent(Event evt) {
+        if (evt.getInitiator().equals(this.initiator)) {
+            switch (evt.getEventType()) {
+                case ANY :
+                default:
+                    UnknownActions.add(evt);
+            }
+
+        }
     }
-    
+
 }

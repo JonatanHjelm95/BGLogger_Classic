@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
  */
 public class AnalasysHandler {
     
-  
+    public String getSubmittingPlayer(){return "";}
     private AnalasysHandler() {
 
     }
