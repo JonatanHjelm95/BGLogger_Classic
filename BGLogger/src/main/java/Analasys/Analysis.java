@@ -17,10 +17,14 @@ enum AnalasysTypes {
     Somtehin
 }
 
+
 public abstract class Analysis {
-
+    private final String initiator;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
-
+    public Analysis(String _initiator){
+        initiator = _initiator;
+    }
+    
     private Runnable AsRunnable() {
         Runnable runnableTask = () -> {
             setup();
@@ -30,7 +34,7 @@ public abstract class Analysis {
         return runnableTask;
     }
     private void setup(){};
-    
+
     abstract void run();
 
     private void shutdown() {};

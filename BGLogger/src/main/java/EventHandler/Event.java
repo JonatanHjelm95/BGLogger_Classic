@@ -21,5 +21,5 @@ public interface Event{
     public void setData(String[] data);
     public MyEventType getEventType();
     public <T> List<T> getResult();
-    
+    public String getInitiator();
 }

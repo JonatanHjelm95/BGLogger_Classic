@@ -5,9 +5,10 @@
  */
 package Analasys;
 
-import EventHandler.Event;
-import EventHandler.MyEventType;
-import Listeners.Listener;
+import EventHandler.*;
+import Listeners.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,23 +17,32 @@ import Listeners.Listener;
 public class ActionAnalysis extends Analysis
 {
 
-    @Override
-    public void addData(String _data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    List<Event> AgressiveActions = new ArrayList<>();
+    List<Event> BuffActions = new ArrayList<>();
+    List<Event> SupportActions = new ArrayList<>();
+    List<Event> ConsumableActions = new ArrayList<>();
+    List<Event> UnknownActions = new ArrayList<>();
+
+    public ActionAnalysis(String _initiator) {
+        super(_initiator);
     }
 
     @Override
-    public Runnable run() {
+    void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Listener
-    public void lyt(Event evt){
-        System.out.println(evt.getEventType());
+    public void AnyEvent(Event evt) {
+        if (evt.getInitiator().equals(this.initiator)) {
+            switch (evt.getEventType()) {
+                case ANY :
+                default:
+                    UnknownActions.add(evt);
+            }
+
+        }
     }
-    @Listener(event=MyEventType.DUEL)
-    public void lyt2(){
-        
-    }
-    
+
 }

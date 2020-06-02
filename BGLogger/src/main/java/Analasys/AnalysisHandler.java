@@ -15,8 +15,11 @@ import java.util.concurrent.Executors;
  * @author Martin
  */
 public class AnalysisHandler {
-    
-  
+
+    public String getSubmittingPlayer() {
+        return "";
+    }
+
     private AnalysisHandler() {
 
     }
