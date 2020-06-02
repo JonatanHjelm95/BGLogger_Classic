@@ -8,30 +8,23 @@ package Analasys;
 import EventHandler.Event;
 import EventHandler.MyEventType;
 import Listeners.Listener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Martin
  */
-public class ActionAnalasys implements Analasys
+public class ActionAnalasys extends Analasys
 {
 
     @Override
-    public void addData(String _data) {
+    void run() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Runnable run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     @Listener
-    public void lyt(Event evt){
-        System.out.println(evt.getEventType());
-    }
-    @Listener(event=MyEventType.DUEL)
-    public void lyt2(){
+    public void AnyEvent(Event evt){
         
     }
     
