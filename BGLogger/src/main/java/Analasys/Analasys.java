@@ -5,18 +5,39 @@
  */
 package Analasys;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  *
  * @author Martin
  */
-
-enum AnalasysTypes{
+enum AnalasysTypes {
     DPS,
     Somtehin
 }
-public interface Analasys {
-    public void addData(String _data);
-    public Runnable run();
+
+public abstract class Analasys {
+
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+
+    private Runnable AsRunnable() {
+        Runnable runnableTask = () -> {
+            settup();
+            run();
+            shutdown();
+        };
+        return runnableTask;
+    }
+    private void settup(){};
     
-    
+    abstract void run();
+
+    private void shutdown() {};
+
+    public void start() {
+        executor.submit(AsRunnable());
+        executor.shutdown();
+    }
+
 }

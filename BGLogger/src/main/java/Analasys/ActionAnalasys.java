@@ -27,8 +27,8 @@ public class ActionAnalasys implements Analasys
     }
     
     @Listener
-    public void lyt(){
-        System.out.println("hello");
+    public void lyt(Event evt){
+        System.out.println(evt.getEventType());
     }
     @Listener(event=MyEventType.DUEL)
     public void lyt2(){

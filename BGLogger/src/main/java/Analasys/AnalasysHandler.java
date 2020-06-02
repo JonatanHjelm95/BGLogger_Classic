@@ -16,8 +16,7 @@ import java.util.concurrent.Executors;
  */
 public class AnalasysHandler {
     
-    private static AnalasysHandler Instance = null;
-    
+  
     private AnalasysHandler() {
 
     }
