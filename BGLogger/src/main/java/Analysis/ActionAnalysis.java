@@ -42,11 +42,11 @@ public class ActionAnalysis extends Analysis {
     void run() {
         double succesPercent = Succeses.size() / Attempts.size();
         double succesFailScore = Succeses.size() / Fails.size();
-        Long t0 = Attempts.get(0).getTime().getTime();
+        Long t0 = Attempts.get(0).getTime().getDate();
         List<Double> X = new ArrayList<>();
         new ArrayList<>();
         Stream<Event> _AStream = Attempts.stream();
-        _AStream.map(s -> s.getTime().getTime() - t0)
+        _AStream.map(s -> s.getTime().getDate() - t0)
                 .map(Double::valueOf)
                 .collect(Collectors.groupingBy(k -> k, Collectors.counting()));
         ).toArray(double[][]::new);

@@ -35,10 +35,6 @@ public class Input implements Event {
         d = date; //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Date getTime() {
-       return d;
-    }
 
     @Override
     public void setTime(String time) {
@@ -52,6 +48,21 @@ public class Input implements Event {
 
     @Override
     public String getInitiator() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Date getDate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String[] getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTime() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

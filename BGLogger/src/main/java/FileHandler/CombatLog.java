@@ -26,6 +26,7 @@ public class CombatLog {
         try {
             reader = new BufferedReader(new FileReader(file));
             String line = reader.readLine();
+            boolean isAdvanced = advancedCombatLog(line);
             while (line != null) {
                 //Splitting on whitespaces IOT get date and time
                 String[] dates = line.split(" ");
@@ -33,10 +34,9 @@ public class CombatLog {
                 String time = dates[1];
                 String eventString = dates[3];
                 String[] eventSplit = eventString.split(",");
-                boolean isAdvanced = advancedCombatLog(line);
                 try {
-                    if (eventString.contains("SWING_DAMAGE")) {
-                        System.out.println(eventSplit[0] + " " + eventSplit[25] + " " + eventSplit[26]);
+                    if (eventString.contains("SWING_DAMAGE") && !eventString.contains("_LANDED")) {
+                        System.out.println(eventSplit[0] + " " + eventSplit[25]);
                     }
                 } catch (IndexOutOfBoundsException e) {
 
@@ -54,11 +54,12 @@ public class CombatLog {
     }
 
     public static boolean advancedCombatLog(String line) {
-        return line.split(",")[3] == "1";
+        return Integer.parseInt(line.split(",")[3]) == 1;
     }
 
     public static void main(String[] args) throws IOException {
-        File file = new File("C:\\Users\\jonab\\.ssh\\4sem\\advProgramming\\BGLogger_Classic\\WoWCombatLog.txt");
+        File file = new File("C:\\Users\\jonab\\Desktop\\WoWCombatLog.txt");
+        //File file = new File("C:\\Users\\jonab\\.ssh\\4sem\\advProgramming\\BGLogger_Classic\\WoWCombatLog.txt");
         FileReader(file);
     }
 }
