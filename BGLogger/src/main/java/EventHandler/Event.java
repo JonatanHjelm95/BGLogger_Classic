@@ -12,15 +12,24 @@ import java.util.List;
  *
  * @author Martin
  */
+public interface Event {
 
-
-
-public interface Event{
-    
     public void setDate(Date date);
-    public Date getDate();
+
+
+    public void setTime(String time);
+
     public void setData(String[] data);
+
+    public Date getDate();
+    
+
+    
+    public String[] getData();
+
     public MyEventType getEventType();
+
     public <T> List<T> getResult();
+
     public String getInitiator();
 }

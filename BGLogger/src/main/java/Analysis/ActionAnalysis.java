@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Analasys;
+package Analysis;
 
 import EventHandler.*;
 import GrafikObjects.Plot;
@@ -28,9 +28,7 @@ public class ActionAnalysis extends Analysis {
     List<Event> Attempts = new ArrayList<>();
     List<Event> Succeses = new ArrayList<>();
     List<Event> Fails = new ArrayList<>();
-    List<Event> SpellDamage = new ArrayList<>();
-    List<Event> SwingDamage = new ArrayList<>();
-    List<Event> RangedDamage = new ArrayList<>();
+
 
     public ActionAnalysis(String _initiator) {
         super(_initiator);
@@ -39,9 +37,12 @@ public class ActionAnalysis extends Analysis {
     void setup() {
         Attempts = Attempts.stream()
                 .sorted(Comparator.comparing(Event::getDate))
-                .filter(evt -> !evt.)
+                .filter(evt -> Arrays.asList(evt.getData()).contains("Dazed"))
                 .collect(Collectors.toList());
-        Succeses = Succeses.stream().sorted(Comparator.comparing(Event::getDate)).collect(Collectors.toList());
+        Succeses = Succeses.stream()
+                .sorted(Comparator.comparing(Event::getDate))
+                .filter(evt -> Arrays.asList(evt.getData()).contains("Dazed"))
+                .collect(Collectors.toList());
         Fails = Fails.stream().sorted(Comparator.comparing(Event::getDate)).collect(Collectors.toList());
     }
 
@@ -76,6 +77,21 @@ public class ActionAnalysis extends Analysis {
         plotCPM.Y = resCPM.values().toArray(new Double[resFPM.values().size()]);
         
         
+
+        Long t0 = Attempts.get(0).getTime().getDate();
+        List<Double> X = new ArrayList<>();
+        new ArrayList<>();
+        Stream<Event> _AStream = Attempts.stream();
+        _AStream.map(s -> s.getTime().getDate() - t0)
+                .map(Double::valueOf)
+                .collect(Collectors.groupingBy(k -> k, Collectors.counting()));
+        ).toArray(double[][]::new);
+        Plot plot = new Plot
+        
+        
+
+    
+
     }
 
     @Listener(event = MyEventType.SPELL_CAST_START)

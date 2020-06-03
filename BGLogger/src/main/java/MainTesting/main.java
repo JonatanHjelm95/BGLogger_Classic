@@ -5,7 +5,7 @@
  */
 package MainTesting;
 
-import Analasys.ActionAnalysis;
+import Analysis.ActionAnalysis;
 import EventHandler.*;
 import Listeners.Listener;
 import Listeners.ListenerHolder;
