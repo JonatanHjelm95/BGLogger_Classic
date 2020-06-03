@@ -10,8 +10,8 @@ package GrafikObjects;
  * @author Martin
  */
 public class Plot {
-    public double[] X;
-    public double[] Y;
+    public Double[] X;
+    public Double[] Y;
     public String[] XLabel;
     public String[] YLabel;
     public String[] Legend;

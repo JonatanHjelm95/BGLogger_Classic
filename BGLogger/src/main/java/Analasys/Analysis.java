@@ -58,8 +58,8 @@ public abstract class Analysis {
     Comparator<Event> timestamp = new Comparator<Event>() {
         @Override
         public int compare(Event o1, Event o2) {
-            Date timestamp1 = o1.getTime();
-            Date timestamp2 = o2.getTime();
+            Date timestamp1 = o1.getDate();
+            Date timestamp2 = o2.getDate();
             return timestamp1.compareTo(timestamp2);
         }
     };
