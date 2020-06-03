@@ -28,9 +28,9 @@ public class DamageAnalysis extends Analysis {
 
     @Override
     void run() {
-        int swingSum = SwingDamage.stream().mapToInt(Integer::intValue).sum();
-        int spellSum = SpellDamage.stream().mapToInt(Integer::intValue).sum();
-        int rangedSum = RangedDamage.stream().mapToInt(Integer::intValue).sum();
+       // int swingSum = SwingDamage.stream().mapToInt(Integer::intValue).sum();
+      //  int spellSum = SpellDamage.stream().mapToInt(Integer::intValue).sum();
+      //  int rangedSum = RangedDamage.stream().mapToInt(Integer::intValue).sum();
         
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

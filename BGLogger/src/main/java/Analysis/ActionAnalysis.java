@@ -37,13 +37,15 @@ public class ActionAnalysis extends Analysis {
     void setup() {
         Attempts = Attempts.stream()
                 .sorted(Comparator.comparing(Event::getDate))
-                .filter(evt -> Arrays.asList(evt.getData()).contains("Dazed"))
+                .filter(evt -> !Arrays.asList(evt.getData()).contains("Dazed"))
                 .collect(Collectors.toList());
         Succeses = Succeses.stream()
                 .sorted(Comparator.comparing(Event::getDate))
-                .filter(evt -> Arrays.asList(evt.getData()).contains("Dazed"))
+                .filter(evt -> !Arrays.asList(evt.getData()).contains("Dazed"))
                 .collect(Collectors.toList());
-        Fails = Fails.stream().sorted(Comparator.comparing(Event::getDate)).collect(Collectors.toList());
+        Fails = Fails.stream()
+                .sorted(Comparator.comparing(Event::getDate))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -54,6 +56,7 @@ public class ActionAnalysis extends Analysis {
         
         Map <Double,Long> resAPM = new HashMap<>();
         resAPM = Attempts.stream().map(s->(s.getDate().getTime()-t0) )
+                .map(ms -> TimeUnit.MILLISECONDS.toMinutes(ms))
                 .map(Double::valueOf)              
                 .collect(Collectors.groupingBy(k -> k, Collectors.counting()));               
         Plot plotAPM = new Plot();
@@ -62,6 +65,7 @@ public class ActionAnalysis extends Analysis {
         
         Map <Double,Long> resFPM = new HashMap<>();
         resFPM = Fails.stream().map(s->(s.getDate().getTime()-t0) )
+                .map(ms -> TimeUnit.MILLISECONDS.toMinutes(ms))
                 .map(Double::valueOf)              
                 .collect(Collectors.groupingBy(k -> k, Collectors.counting()));               
         Plot plotFPM = new Plot();
@@ -70,27 +74,12 @@ public class ActionAnalysis extends Analysis {
         
         Map <Double,Long> resCPM = new HashMap<>();
         resCPM = Fails.stream().map(s->(s.getDate().getTime()-t0) )
+                .map(ms -> TimeUnit.MILLISECONDS.toMinutes(ms))
                 .map(Double::valueOf)              
                 .collect(Collectors.groupingBy(k -> k, Collectors.counting()));               
         Plot plotCPM = new Plot();
         plotCPM.X = resCPM.keySet().toArray(new Double[resFPM.keySet().size()]);
         plotCPM.Y = resCPM.values().toArray(new Double[resFPM.values().size()]);
-        
-        
-
-        Long t0 = Attempts.get(0).getTime().getDate();
-        List<Double> X = new ArrayList<>();
-        new ArrayList<>();
-        Stream<Event> _AStream = Attempts.stream();
-        _AStream.map(s -> s.getTime().getDate() - t0)
-                .map(Double::valueOf)
-                .collect(Collectors.groupingBy(k -> k, Collectors.counting()));
-        ).toArray(double[][]::new);
-        Plot plot = new Plot
-        
-        
-
-    
 
     }
 
