@@ -14,7 +14,8 @@ import java.util.List;
  */
 public class Duel implements Event {
     MyEventType _event = MyEventType.ANY;
-
+    private Date d;
+    
     @Override
     public MyEventType getEventType() {
         return _event;
@@ -42,13 +43,13 @@ public class Duel implements Event {
     }
 
     @Override
-    public void setDate(String date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setDate(Date date) {
+        d = date; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Date getTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return d;
     }
     
 }

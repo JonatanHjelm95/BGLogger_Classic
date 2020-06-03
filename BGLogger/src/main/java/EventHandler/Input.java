@@ -13,7 +13,7 @@ import java.util.List;
  * @author Martin
  */
 public class Input implements Event {
-
+    private Date d;
     private final MyEventType _type = MyEventType.SPELL_AURA_APPLIED;
     String _date;
     String _time;
@@ -31,8 +31,13 @@ public class Input implements Event {
     }
 
     @Override
-    public void setDate(String date) {
-        _date = date;
+    public void setDate(Date date) {
+        d = date; //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Date getTime() {
+       return d;
     }
 
     @Override
@@ -50,9 +55,5 @@ public class Input implements Event {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Date getTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

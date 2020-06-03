@@ -6,11 +6,16 @@
 package Analasys;
 
 import EventHandler.*;
+import GrafikObjects.Plot;
 import Listeners.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -27,14 +32,29 @@ public class ActionAnalysis extends Analysis {
     }
 
     void setup() {
-        Attempts.sort(timestamp);
-        Succeses.sort(timestamp);
-        Fails.sort(timestamp);
+        Attempts.stream().sorted(timestamp);
+        Succeses.stream().sorted(timestamp);
+        Fails.stream().sorted(timestamp);
     }
 
     @Override
     void run() {
         double succesPercent = Succeses.size() / Attempts.size();
+        double succesFailScore = Succeses.size() / Fails.size();
+        Long t0 = Attempts.get(0).getTime().getTime();
+        List<Double> X = new ArrayList<>();
+         new ArrayList<>();
+        Stream<Event> _AStream = Attempts.stream();
+        _AStream.map(s->s.getTime().getTime()-t0)
+                .map(Double::valueOf)              
+                .collect(Collectors.groupingBy(k -> k, Collectors.counting()));
+                
+                
+        ).toArray(double[][]::new);
+        Plot plot = new Plot
+        
+        
+
     }
 
     @Listener(event = MyEventType.SPELL_CAST_START)
@@ -48,6 +68,7 @@ public class ActionAnalysis extends Analysis {
     public void SuccesAura(Event evt) {
         if (evt.getInitiator().equals(this.initiator)) {
             Succeses.add(evt);
+            Attempts.add(evt);
         }
     }
 
@@ -64,6 +85,5 @@ public class ActionAnalysis extends Analysis {
             Fails.add(evt);
         }
     }
-
 
 }

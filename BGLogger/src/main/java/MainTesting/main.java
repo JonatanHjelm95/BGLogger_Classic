@@ -12,9 +12,17 @@ import Listeners.ListenerHolder;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author jonab
@@ -36,7 +44,7 @@ public class main {
         eh.addEvent(evt);
 
         System.out.println("Event Added");
-         */
+         
         ActionAnalysis act = new ActionAnalysis("metoo");
         EventHandler eh = new EventHandler();
         Class obj = act.getClass();
@@ -55,6 +63,41 @@ public class main {
         
         eh.addEvent(evt);
         //listners.get(0).invoke(null);
+         */
         
+        long t0 = (long)0;
+        Event e0 = new Duel();
+        Date d = new Date();
+        d.setTime(100);
+        e0.setDate(d);
+        
+        Event e1 = new Duel();
+        Date d1 = new Date();
+        d1.setTime(200);
+        e1.setDate(d1);
+        
+        Event e11= new Duel();
+        e11.setDate(d1);
+        
+        Event e2 = new Duel();
+        Date d2 = new Date();
+        d2.setTime(300);
+        e2.setDate(d1);
+        
+        Event e3 = new Duel();
+        e3.setDate(d2);
+        
+        Event e4 = new Duel();
+        e4.setDate(d2);
+        
+        Event[] arr = {e0,e1,e11,e2,e3,e4};
+        List<Event> l= Arrays.asList(arr);
+        
+        System.out.println(
+                l.stream().map(s->(s.getTime().getTime()-t0) )
+                .map(Double::valueOf)              
+                .collect(Collectors.groupingBy(k -> k, Collectors.counting()))
+                .toString()
+        );
     }
 }
