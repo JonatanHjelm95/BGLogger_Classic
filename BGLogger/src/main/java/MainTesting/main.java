@@ -93,11 +93,6 @@ public class main {
         Event[] arr = {e0,e1,e11,e2,e3,e4};
         List<Event> l= Arrays.asList(arr);
         
-        System.out.println(
-                l.stream().map(s->(s.getTime().getTime()-t0) )
-                .map(Double::valueOf)              
-                .collect(Collectors.groupingBy(k -> k, Collectors.counting()))
-                .toString()
-        );
+
     }
 }
