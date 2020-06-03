@@ -21,6 +21,9 @@ public class ActionAnalysis extends Analysis {
     List<Event> Attempts = new ArrayList<>();
     List<Event> Succeses = new ArrayList<>();
     List<Event> Fails = new ArrayList<>();
+    List<Event> SpellDamage = new ArrayList<>();
+    List<Event> SwingDamage = new ArrayList<>();
+    List<Event> RangedDamage = new ArrayList<>();
 
     public ActionAnalysis(String _initiator) {
         super(_initiator);
@@ -64,6 +67,26 @@ public class ActionAnalysis extends Analysis {
             Fails.add(evt);
         }
     }
-
+    
+    @Listener(event = MyEventType.SPELL_DAMAGE)
+    public void SpellDamage(Event evt) {
+        if (evt.getInitiator().equals(this.initiator)) {
+            SpellDamage.add(evt);
+        }
+    }
+    
+    @Listener(event = MyEventType.SWING_DAMAGE)
+    public void SwingDamage(Event evt) {
+        if (evt.getInitiator().equals(this.initiator)) {
+            SwingDamage.add(evt);
+        }
+    }
+    
+    @Listener(event = MyEventType.RANGE_DAMAGE)
+    public void RangedDamage(Event evt) {
+        if (evt.getInitiator().equals(this.initiator)) {
+            RangedDamage.add(evt);
+        }
+    }
 
 }

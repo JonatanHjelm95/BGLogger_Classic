@@ -31,17 +31,30 @@ public class CombatLog {
                 String[] dates = line.split(" ");
                 String date = dates[0];
                 String time = dates[1];
-                String event = dates[3];
-                String[] eventSplit = event.split(",");
+                String eventString = dates[3];
+                String[] eventSplit = eventString.split(",");
+                boolean isAdvanced = advancedCombatLog(line);
+                try {
+                    if (eventString.contains("SWING_DAMAGE")) {
+                        System.out.println(eventSplit[0] + " " + eventSplit[25] + " " + eventSplit[26]);
+                    }
+                } catch (IndexOutOfBoundsException e) {
+
+                }
+
                 line = reader.readLine();
-                EventHandler eh = new EventHandler();
+                //EventHandler eh = new EventHandler();
                 //eh.addEvent();
-               
+
             }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean advancedCombatLog(String line) {
+        return line.split(",")[3] == "1";
     }
 
     public static void main(String[] args) throws IOException {
