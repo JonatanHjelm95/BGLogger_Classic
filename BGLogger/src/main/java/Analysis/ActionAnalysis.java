@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Analasys;
+package Analysis;
 
 import EventHandler.*;
 import GrafikObjects.Plot;
@@ -26,9 +26,7 @@ public class ActionAnalysis extends Analysis {
     List<Event> Attempts = new ArrayList<>();
     List<Event> Succeses = new ArrayList<>();
     List<Event> Fails = new ArrayList<>();
-    List<Event> SpellDamage = new ArrayList<>();
-    List<Event> SwingDamage = new ArrayList<>();
-    List<Event> RangedDamage = new ArrayList<>();
+
 
     public ActionAnalysis(String _initiator) {
         super(_initiator);
@@ -46,18 +44,17 @@ public class ActionAnalysis extends Analysis {
         double succesFailScore = Succeses.size() / Fails.size();
         Long t0 = Attempts.get(0).getTime().getTime();
         List<Double> X = new ArrayList<>();
-         new ArrayList<>();
+        new ArrayList<>();
         Stream<Event> _AStream = Attempts.stream();
-        _AStream.map(s->s.getTime().getTime()-t0)
-                .map(Double::valueOf)              
+        _AStream.map(s -> s.getTime().getTime() - t0)
+                .map(Double::valueOf)
                 .collect(Collectors.groupingBy(k -> k, Collectors.counting()));
-                
-                
         ).toArray(double[][]::new);
         Plot plot = new Plot
         
         
 
+    
     }
 
     @Listener(event = MyEventType.SPELL_CAST_START)
@@ -86,28 +83,6 @@ public class ActionAnalysis extends Analysis {
     public void FailedCast(Event evt) {
         if (evt.getInitiator().equals(this.initiator)) {
             Fails.add(evt);
-        }
-    }
-
-    
-    @Listener(event = MyEventType.SPELL_DAMAGE)
-    public void SpellDamage(Event evt) {
-        if (evt.getInitiator().equals(this.initiator)) {
-            SpellDamage.add(evt);
-        }
-    }
-    
-    @Listener(event = MyEventType.SWING_DAMAGE)
-    public void SwingDamage(Event evt) {
-        if (evt.getInitiator().equals(this.initiator)) {
-            SwingDamage.add(evt);
-        }
-    }
-    
-    @Listener(event = MyEventType.RANGE_DAMAGE)
-    public void RangedDamage(Event evt) {
-        if (evt.getInitiator().equals(this.initiator)) {
-            RangedDamage.add(evt);
         }
     }
 

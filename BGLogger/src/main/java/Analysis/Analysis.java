@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Analasys;
+package Analysis;
 
 import EventHandler.Event;
 import java.util.Comparator;
