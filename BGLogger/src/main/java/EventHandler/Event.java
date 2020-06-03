@@ -5,6 +5,7 @@
  */
 package EventHandler;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ public interface Event{
     
     public void setDate(String date);
     public void setTime(String time);
+    public Date getTime();
     public void setData(String[] data);
     public MyEventType getEventType();
     public <T> List<T> getResult();

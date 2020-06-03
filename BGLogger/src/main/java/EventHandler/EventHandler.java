@@ -30,7 +30,8 @@ public class EventHandler {
 
     private Map< MyEventType, List<ListenerHolder>> Listeners = new HashMap<>();
 
-    private EventHandler() {
+    public EventHandler() {
+        /*
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Runnable runnableTask = () -> {
             try {
@@ -50,7 +51,7 @@ public class EventHandler {
             Instance = new EventHandler();
         }
 
-        return Instance;
+        return Instance;*/
     }
 
     private List<Event> eventQue = new ArrayList<>();

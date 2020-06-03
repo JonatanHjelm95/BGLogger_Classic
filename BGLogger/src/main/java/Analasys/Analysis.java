@@ -5,6 +5,9 @@
  */
 package Analasys;
 
+import EventHandler.Event;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,14 +20,15 @@ enum AnalasysTypes {
     Somtehin
 }
 
-
 public abstract class Analysis {
-    private final String initiator;
+
+    final String initiator;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
-    public Analysis(String _initiator){
+
+    public Analysis(String _initiator) {
         initiator = _initiator;
     }
-    
+
     private Runnable AsRunnable() {
         Runnable runnableTask = () -> {
             setup();
@@ -33,15 +37,31 @@ public abstract class Analysis {
         };
         return runnableTask;
     }
-    private void setup(){};
+
+    private void setup() {
+    }
+
+    ;
 
     abstract void run();
 
-    private void shutdown() {};
+    private void shutdown() {
+    }
+
+    ;
 
     public void start() {
         executor.submit(AsRunnable());
         executor.shutdown();
     }
+
+    Comparator<Event> timestamp = new Comparator<Event>() {
+        @Override
+        public int compare(Event o1, Event o2) {
+            Date timestamp1 = o1.getTime();
+            Date timestamp2 = o2.getTime();
+            return timestamp1.compareTo(timestamp2);
+        }
+    };
 
 }

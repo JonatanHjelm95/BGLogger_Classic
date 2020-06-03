@@ -8,6 +8,8 @@ package Analasys;
 import EventHandler.*;
 import Listeners.*;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,9 +26,15 @@ public class ActionAnalysis extends Analysis {
         super(_initiator);
     }
 
+    void setup() {
+        Attempts.sort(timestamp);
+        Succeses.sort(timestamp);
+        Fails.sort(timestamp);
+    }
+
     @Override
     void run() {
-
+        double succesPercent = Succeses.size() / Attempts.size();
     }
 
     @Listener(event = MyEventType.SPELL_CAST_START)
@@ -56,4 +64,6 @@ public class ActionAnalysis extends Analysis {
             Fails.add(evt);
         }
     }
+
+
 }

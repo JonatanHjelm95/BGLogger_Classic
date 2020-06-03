@@ -5,6 +5,7 @@
  */
 package EventHandler;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,6 +43,11 @@ public class Duel implements Event {
 
     @Override
     public void setDate(String date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Date getTime() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

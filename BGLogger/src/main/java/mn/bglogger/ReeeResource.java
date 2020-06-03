@@ -58,6 +58,6 @@ public class ReeeResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void postJson(String content){
         Event input = new Input();
-        input.setData(content);
+        //input.setData(content);
     }
 }

@@ -34,7 +34,7 @@ public class CombatLog {
                 String event = dates[3];
                 String[] eventSplit = event.split(",");
                 line = reader.readLine();
-                EventHandler eh = EventHandler.getInstance();
+                EventHandler eh = new EventHandler();
                 //eh.addEvent();
                
             }

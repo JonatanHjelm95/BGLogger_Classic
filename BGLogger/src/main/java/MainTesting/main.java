@@ -7,11 +7,8 @@ package MainTesting;
 
 import Analasys.ActionAnalysis;
 import EventHandler.*;
-import Listeners.DuelListener;
-import Listeners.InputListener;
 import Listeners.Listener;
 import Listeners.ListenerHolder;
-import Listeners.ListenerInterface;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -20,7 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author jonab
  */
 public class main {
@@ -42,7 +38,7 @@ public class main {
         System.out.println("Event Added");
          */
         ActionAnalysis act = new ActionAnalysis("metoo");
-        EventHandler eh = EventHandler.getInstance();
+        EventHandler eh = new EventHandler();
         Class obj = act.getClass();
         Method[] methods = obj.getMethods();
         List<ListenerHolder> listners = new ArrayList<>();
