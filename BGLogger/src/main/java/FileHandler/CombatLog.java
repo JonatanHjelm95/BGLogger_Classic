@@ -34,17 +34,11 @@ public class CombatLog {
                 String time = dates[1];
                 String eventString = dates[3];
                 String[] eventSplit = eventString.split(",");
-                try {
-                    if (eventString.contains("SWING_DAMAGE") && !eventString.contains("_LANDED")) {
-                        System.out.println(eventSplit[0] + " " + eventSplit[25]);
-                    }
-                } catch (IndexOutOfBoundsException e) {
-
-                }
-
+                
                 line = reader.readLine();
-                //EventHandler eh = new EventHandler();
-                //eh.addEvent();
+                EventHandler eh = new EventHandler();
+                eh.addEvent(new Input(date, time, eventSplit));
+                
 
             }
             reader.close();
@@ -52,14 +46,15 @@ public class CombatLog {
             e.printStackTrace();
         }
     }
+    
 
     public static boolean advancedCombatLog(String line) {
         return Integer.parseInt(line.split(",")[3]) == 1;
     }
 
     public static void main(String[] args) throws IOException {
-        File file = new File("C:\\Users\\jonab\\Desktop\\WoWCombatLog.txt");
-        //File file = new File("C:\\Users\\jonab\\.ssh\\4sem\\advProgramming\\BGLogger_Classic\\WoWCombatLog.txt");
+        //File file = new File("C:\\Users\\jonab\\Desktop\\WoWCombatLog.txt");
+        File file = new File("C:\\Users\\jonab\\.ssh\\4sem\\advProgramming\\BGLogger_Classic\\WoWCombatLog.txt");
         FileReader(file);
     }
 }

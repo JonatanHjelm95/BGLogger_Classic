@@ -23,8 +23,6 @@ public interface Event {
 
     public Date getDate();
     
-
-    
     public String[] getData();
 
     public MyEventType getEventType();

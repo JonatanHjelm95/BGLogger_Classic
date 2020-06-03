@@ -75,21 +75,6 @@ public class ActionAnalysis extends Analysis {
         Plot plotCPM = new Plot();
         plotCPM.X = resCPM.keySet().toArray(new Double[resFPM.keySet().size()]);
         plotCPM.Y = resCPM.values().toArray(new Double[resFPM.values().size()]);
-        
-        
-
-        Long t0 = Attempts.get(0).getTime().getDate();
-        List<Double> X = new ArrayList<>();
-        new ArrayList<>();
-        Stream<Event> _AStream = Attempts.stream();
-        _AStream.map(s -> s.getTime().getDate() - t0)
-                .map(Double::valueOf)
-                .collect(Collectors.groupingBy(k -> k, Collectors.counting()));
-        ).toArray(double[][]::new);
-        Plot plot = new Plot
-        
-        
-
     
 
     }
