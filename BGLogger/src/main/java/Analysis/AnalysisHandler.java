@@ -28,17 +28,19 @@ import java.util.logging.Logger;
 public class AnalysisHandler {
 
     private List<Analysis> analysis = new ArrayList<>();
-    private EventHandler eh = new EventHandler();
+    private EventHandler eh;
 
     public String getSubmittingPlayer() {
         return "";
     }
     public AnalysisHandler(String initiator, String data) throws IOException{
+        eh = new EventHandler();
         analysis.add(new ActionAnalysis(initiator, this));
         analysis.add(new DamageAnalysis(initiator, this));
         AddListeners();
+        System.out.println("filereading");
         FileHandler.FileReaderFromBase64(eh, data);
-        StartAnalysis();   
+        //StartAnalysis();   
     }
     
     private AnalysisHandler() {
@@ -57,6 +59,7 @@ public class AnalysisHandler {
     }
 
     public void StartAnalysis() {
+        System.out.println("starting the show.");
         analysis.stream()
                 .forEach(Analysis::start);
     }

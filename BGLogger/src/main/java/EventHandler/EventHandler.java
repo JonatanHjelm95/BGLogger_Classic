@@ -31,7 +31,7 @@ public class EventHandler {
     private Map< MyEventType, List<ListenerHolder>> Listeners = new HashMap<>();
 
     public EventHandler() {
-        /*
+        
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Runnable runnableTask = () -> {
             try {
@@ -45,22 +45,23 @@ public class EventHandler {
         };
         executor.submit(runnableTask);
     }
-
+    /*
     public static EventHandler getInstance() {
         if (Instance == null) {
             Instance = new EventHandler();
         }
 
-        return Instance;*/
-    }
+        return Instance;
+    }*/
 
     private List<Event> eventQue = new ArrayList<>();
     ReentrantLock lock = new ReentrantLock();
 
     public void addEvent(Event _event) {
-        System.out.println("adding event!");
+        
         lock.tryLock();
         try {
+            System.out.println("adding event of type:"+ _event.getEventType());
             eventQue.add(_event);
         } finally {
             lock.unlock();
@@ -69,11 +70,10 @@ public class EventHandler {
 
     private Event getEvent() throws Exception {
         while (eventQue.size() <= 0) {
-            sleep(100);
+            sleep(1);
         }
         lock.tryLock();
         try {
-            System.out.println("AN EVENT!");
             Event _event = eventQue.get(0);
             eventQue.remove(0);
             return _event;
@@ -118,7 +118,7 @@ public class EventHandler {
                     _listener.invoke(_event);
                     System.out.println("invoked a listener");
                 }
-                System.out.println("done1");
+                System.out.println("done");
             };
             executor.submit(task1);
         }

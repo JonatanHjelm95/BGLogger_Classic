@@ -23,7 +23,7 @@ enum AnalasysTypes {
 public abstract class Analysis {
 
     final String initiator;
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    
     final AnalysisHandler instance;
 
     public Analysis(String _initiator,AnalysisHandler _instance) {
@@ -32,28 +32,34 @@ public abstract class Analysis {
     }
 
     private Runnable AsRunnable() {
+        System.out.println("creating runnable for " + this.getClass().getName());
         Runnable runnableTask = () -> {
-            setup();
+            Setup();
             run();
             shutdown();
         };
         return runnableTask;
     }
 
-    private void setup() {
+    public void Setup() {
+        System.out.println("Starting analasys: "+ this.getClass().getName());
     }
 
     ;
 
     abstract void run();
-
-    private void shutdown() {
+    
+    public void shutdown() {
+        System.out.println("ending analysis: " + this.getClass().getName() );
     }
 
     ;
 
     public void start() {
-        executor.submit(AsRunnable());
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Runnable a = AsRunnable();
+        executor.submit(a);
+        System.out.println("task Submittet for " +this.getClass().getName());
         executor.shutdown();
     }
 

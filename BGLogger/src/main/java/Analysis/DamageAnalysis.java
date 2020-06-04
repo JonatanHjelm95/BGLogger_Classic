@@ -83,6 +83,9 @@ public class DamageAnalysis extends Analysis {
         int swingSum = Swings.stream().mapToInt(s->Integer.parseInt(s.getData()[25])).sum();
         int spellSum = Spells.stream().mapToInt(s->Integer.parseInt(s.getData()[26])).sum();
         int rangedSum = Ranged.stream().mapToInt(s->Integer.parseInt(s.getData()[28])).sum();
+        
+        Result results = new Result();
+        instance.submitResult(results, this.getClass());
     }
 
     @Listener(event = MyEventType.SPELL_DAMAGE)

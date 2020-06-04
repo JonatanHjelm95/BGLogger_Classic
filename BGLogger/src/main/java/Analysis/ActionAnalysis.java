@@ -38,7 +38,9 @@ public class ActionAnalysis extends Analysis{
 
 
 
-    void setup() {
+    @Override
+    public void Setup() {
+        System.out.println("reee");
         
         Attempts = Attempts.stream()
                 .sorted(Comparator.comparing(Event::getDate))
@@ -55,6 +57,10 @@ public class ActionAnalysis extends Analysis{
 
     @Override
     void run() {
+        if(Attempts.size()==0 ||Fails.size() == 0 || Succeses.size() == 0){
+            System.out.println("no senior");
+        }else{
+        System.out.println(Attempts.size());
         double succesPercent = Succeses.size() / Attempts.size();
         double succesFailScore = Succeses.size() / Fails.size();
         Long t0 = Attempts.get(0).getDate().getTime();
@@ -102,8 +108,10 @@ public class ActionAnalysis extends Analysis{
         results.addPlot(plotAPM);
         results.addPlot(plotFPM);
         results.addPlot(plotCPM);
-
-        instance.submitResult(results, this.getClass());
+        
+        System.out.println("done did it daddy :)");
+        instance.submitResult(results, this.getClass() );
+        }
     }
 
     @Listener(event = MyEventType.SPELL_CAST_START)
@@ -115,6 +123,7 @@ public class ActionAnalysis extends Analysis{
 
     @Listener(event = MyEventType.SPELL_AURA_APPLIED)
     public void SuccesAura(Event evt) {
+        System.out.println(evt.getEventType());
         if (evt.getInitiator().equals(this.initiator)) {
             Succeses.add(evt);
             Attempts.add(evt);

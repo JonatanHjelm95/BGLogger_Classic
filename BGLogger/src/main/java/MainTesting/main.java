@@ -63,7 +63,7 @@ public class main {
         eh.addEvent(evt);
         //listners.get(0).invoke(null);
          */
-        
+        /**
         long t0 = (long)0;
         Event e0 = new Duel();
         Date d = new Date();
@@ -91,7 +91,7 @@ public class main {
         
         Event[] arr = {e0,e1,e11,e2,e3,e4};
         List<Event> l= Arrays.asList(arr);
-        
+        */
 
     }
 }
