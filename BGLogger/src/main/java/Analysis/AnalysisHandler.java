@@ -38,6 +38,7 @@ public class AnalysisHandler {
         eh = new EventHandler();
         analysis.add(new ActionAnalysis(initiator, this));
         analysis.add(new DamageAnalysis(initiator, this));
+        analysis.add(new ChainedAnalysis(initiator, this));
         AddListeners();
         FileHandler.FileReaderFromBase64(eh, data);
         while (!eh.eventlogComplete()) {            
@@ -79,25 +80,27 @@ public class AnalysisHandler {
     void submitResult(Result res,Class<?> sender) {
         System.out.println("Result submitter from: " +sender.getName());
         //TODO hand to frontend
-        /**
+
+        
         analysis.stream()
                 .filter(a -> Arrays.asList(a.getClass().getInterfaces()).contains(Plugable.class))
                 .forEach(a -> {
                     Class c = a.getClass();
                     Arrays.asList(c.getMethods()).stream()
                             .filter(m -> m.isAnnotationPresent(Plug.class))
-                            .filter(m -> Arrays.asList(m.getAnnotation(Plug.class).socket()).contains(sender.getClass()))
+                            .filter(m -> Arrays.asList(m.getAnnotation(Plug.class).socket()).contains(sender))
                             .forEach(m -> {
                                 try {
-                                    m.invoke(null, null); //TODO fixx this plox
+                                    m.invoke(a, res,sender.getName()); //TODO fixx this plox
                                 } catch (IllegalAccessException ex) {
                                     Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
                                 } catch (IllegalArgumentException ex) {
                                     Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
+                                    System.out.println(ex.getMessage());
                                 } catch (InvocationTargetException ex) {
                                     Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             });
-                });*/
+                });
     }
 }

@@ -13,5 +13,5 @@ import java.util.List;
  */
 
 public interface Plugable {
-    public void Plug(List<Double> data,String DataName,String Sender);
+    public void Plug(Result data,String Sender);
 }

@@ -11,6 +11,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -49,6 +51,8 @@ public class AnalysisResource {
         }
         catch(IOException e){
             return e.toString();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AnalysisResource.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
     }

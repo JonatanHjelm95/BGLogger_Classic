@@ -26,8 +26,8 @@ public class ChainedAnalysis extends Analysis implements Plugable{
 
     @Plug(socket = {ActionAnalysis.class,DamageAnalysis.class})
     @Override
-    public void Plug(List<Double> data,String DataName,String Sender) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void Plug(Result data,String Sender) {
+        System.out.println("recieved Data from: "+Sender+" now finishing up my stuff");
     }
     
 }
