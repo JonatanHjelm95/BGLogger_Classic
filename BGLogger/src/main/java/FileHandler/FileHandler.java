@@ -41,7 +41,7 @@ public class FileHandler {
         
     }
 
-    public static Input createInput(String line) {
+    private static Input createInput(String line) {
         //Splitting on whitespaces IOT get date and time
         String[] dates = line.split(" ");
         String date = dates[0];
@@ -53,13 +53,7 @@ public class FileHandler {
 
     }
 
-    public static boolean advancedCombatLog(String line) {
+    private static boolean advancedCombatLog(String line) {
         return Integer.parseInt(line.split(",")[3]) == 1;
-    }
-
-    public static void main(String[] args) throws IOException {
-        //File file = new File("C:\\Users\\jonab\\Desktop\\WoWCombatLog.txt");
-        String path = "C:\\Users\\jonab\\.ssh\\4sem\\advProgramming\\BGLogger_Classic\\WoWCombatLog.txt";
-        FileReader(new EventHandler(), path);
     }
 }

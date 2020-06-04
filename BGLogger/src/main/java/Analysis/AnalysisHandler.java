@@ -6,8 +6,10 @@
 package Analysis;
 
 import EventHandler.*;
+import FileHandler.*;
 import Listeners.Listener;
 import Listeners.ListenerHolder;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -30,7 +32,12 @@ public class AnalysisHandler {
     public String getSubmittingPlayer() {
         return "";
     }
-
+    public AnalysisHandler(String initiator, String logPath) throws IOException{
+        AddListeners();
+        FileHandler.FileReader(eh, logPath);
+        StartAnalysis();   
+    }
+    
     private AnalysisHandler() {
     }
 
