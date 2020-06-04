@@ -96,7 +96,6 @@ public class AnalysisHandler {
                                     Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
                                 } catch (IllegalArgumentException ex) {
                                     Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
-                                    System.out.println(ex.getMessage());
                                 } catch (InvocationTargetException ex) {
                                     Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
                                 }

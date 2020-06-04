@@ -5,14 +5,18 @@
  */
 package Analysis;
 
+import static java.lang.Thread.sleep;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Martin
  */
 public class ChainedAnalysis extends Analysis implements Plugable{
-
+    private boolean iWait = true;
+    
     public ChainedAnalysis(String _initiator, AnalysisHandler _instance) {
         super(_initiator, _instance);
     }
@@ -21,13 +25,21 @@ public class ChainedAnalysis extends Analysis implements Plugable{
 
     @Override
     void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        while(iWait){
+            try {
+                sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ChainedAnalysis.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Plug(socket = {ActionAnalysis.class,DamageAnalysis.class})
     @Override
     public void Plug(Result data,String Sender) {
         System.out.println("recieved Data from: "+Sender+" now finishing up my stuff");
+        iWait=false;
+                
     }
     
 }
