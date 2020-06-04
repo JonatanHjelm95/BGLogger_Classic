@@ -6,6 +6,7 @@
 package Analysis;
 
 import EventHandler.*;
+import GrafikObjects.Plot;
 import Listeners.Listener;
 import Listeners.ListenerHolder;
 import java.lang.reflect.InvocationTargetException;
@@ -47,23 +48,23 @@ public class AnalysisHandler {
     }
 
     public void StartAnalysis() {
-        for (Analysis analysi : analysis) {
-            analysi.start();
-        }
+        analysis.stream()
+                .forEach(Analysis::start);
     }
 
     public void AddAnalysis(Analysis _analysi) {
         analysis.add(_analysi);
     }
 
-    void returnResult(Class<?> sender) throws IllegalAccessException {
+    void returnPlot(Plot p){
+        
+    }
+    
+    void returnResult(List<Double> res,Class<?> sender) throws IllegalAccessException {
         //TODO hand to frontend
         
         analysis.stream()
-                .filter(a -> {
-                    Class c = a.getClass();
-                    return Arrays.asList(c.getInterfaces()).contains(Plugable.class);
-                })
+                .filter(a -> Arrays.asList(a.getClass().getInterfaces()).contains(Plugable.class))
                 .forEach(a -> {
                     Class c = a.getClass();
                     Arrays.asList(c.getMethods()).stream()
