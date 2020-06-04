@@ -19,13 +19,14 @@ import java.util.logging.Logger;
 public class Input implements Event {
 
     private Date d;
-    private MyEventType _type = MyEventType.SPELL_AURA_APPLIED;
+
+    private MyEventType _type;
     String _date;
     String _time;
     String[] _data;
-    
-    
-    public Input(String _date, String _time, String _data[]){
+
+    public Input(String _date, String _time, String _data[], MyEventType _type) {
+        this._type = _type;
         this._data = _data;
         this._date = _date;
         this._time = _time;
@@ -35,8 +36,6 @@ public class Input implements Event {
     public MyEventType getEventType() {
         return _type;
     }
-
- 
 
     @Override
     public void setDate(Date date) {
@@ -78,4 +77,8 @@ public class Input implements Event {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public String toString() {
+        return "Input{" + "d=" + d + ", _type=" + _type + ", _date=" + _date + ", _time=" + _time + ", _data=" + _data + '}';
+    }
 }

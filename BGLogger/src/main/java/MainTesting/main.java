@@ -32,6 +32,7 @@ public class main {
     private static int test = 0;
 
     public static void main(String[] args) {
+        
         /*
         
         eh.addListener(MyEventType.INPUT, new InputListener());

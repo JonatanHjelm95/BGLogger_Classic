@@ -80,8 +80,8 @@ public class DamageAnalysis extends Analysis {
         plotRangesPM.Y = SpellsPM.values().toArray(new Double[SpellsPM.values().size()]);
         
         int swingSum = Swings.stream().mapToInt(s->Integer.parseInt(s.getData()[25])).sum();
-        int spellSum = Spells.stream().mapToInt(s->Integer.parseInt(s.getData()[25])).sum();
-        int rangedSum = Ranged.stream().mapToInt(s->Integer.parseInt(s.getData()[25])).sum();
+        int spellSum = Spells.stream().mapToInt(s->Integer.parseInt(s.getData()[26])).sum();
+        int rangedSum = Ranged.stream().mapToInt(s->Integer.parseInt(s.getData()[28])).sum();
     }
 
     @Listener(event = MyEventType.SPELL_DAMAGE)
