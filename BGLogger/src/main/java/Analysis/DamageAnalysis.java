@@ -22,9 +22,11 @@ public class DamageAnalysis extends Analysis {
     List<Event> SwingDamage = new ArrayList<>();
     List<Event> RangedDamage = new ArrayList<>();
 
-    public DamageAnalysis(String _initiator) {
-        super(_initiator);
+    public DamageAnalysis(String _initiator, AnalysisHandler _instance) {
+        super(_initiator, _instance);
     }
+
+
 
     @Override
     void run() {

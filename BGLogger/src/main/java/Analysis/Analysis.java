@@ -24,9 +24,11 @@ public abstract class Analysis {
 
     final String initiator;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final AnalysisHandler instance;
 
-    public Analysis(String _initiator) {
+    public Analysis(String _initiator,AnalysisHandler _instance) {
         initiator = _initiator;
+        instance = _instance;
     }
 
     private Runnable AsRunnable() {

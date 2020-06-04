@@ -8,11 +8,15 @@ package Analysis;
 import EventHandler.*;
 import Listeners.Listener;
 import Listeners.ListenerHolder;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,11 +34,9 @@ public class AnalysisHandler {
     private AnalysisHandler() {
     }
 
-    private void AddListeners(){
+    private void AddListeners() {
         for (Analysis analysi : analysis) {
             Class obj = analysi.getClass();
-            Method[] methods = obj.getMethods();
-            List<ListenerHolder> listners = new ArrayList<>();
             for (Method method : obj.getMethods()) {
                 if (method.isAnnotationPresent(Listener.class)) {
                     Listener l = method.getAnnotation(Listener.class);
@@ -43,15 +45,41 @@ public class AnalysisHandler {
             }
         }
     }
-    
-    public void StartAnalysis(){        
+
+    public void StartAnalysis() {
         for (Analysis analysi : analysis) {
             analysi.start();
         }
     }
-    
-    public void AddAnalysis(Analysis _analysi){
+
+    public void AddAnalysis(Analysis _analysi) {
         analysis.add(_analysi);
     }
-           
+
+    void returnResult(Class<?> sender) throws IllegalAccessException {
+        //TODO hand to frontend
+        
+        analysis.stream()
+                .filter(a -> {
+                    Class c = a.getClass();
+                    return Arrays.asList(c.getInterfaces()).contains(Plugable.class);
+                })
+                .forEach(a -> {
+                    Class c = a.getClass();
+                    Arrays.asList(c.getMethods()).stream()
+                            .filter(m -> m.isAnnotationPresent(Plug.class))
+                            .filter(m -> Arrays.asList(m.getAnnotation(Plug.class).socket()).contains(sender.getClass()))
+                            .forEach(m -> {
+                                try {
+                                    m.invoke(null, null); //TODO fixx this plox
+                                } catch (IllegalAccessException ex) {
+                                    Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (IllegalArgumentException ex) {
+                                    Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
+                                } catch (InvocationTargetException ex) {
+                                    Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            });
+                });
+    }
 }

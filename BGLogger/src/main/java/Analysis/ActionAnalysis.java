@@ -23,18 +23,21 @@ import java.util.stream.Stream;
  *
  * @author Martin
  */
-public class ActionAnalysis extends Analysis {
+public class ActionAnalysis extends Analysis{
 
     List<Event> Attempts = new ArrayList<>();
     List<Event> Succeses = new ArrayList<>();
     List<Event> Fails = new ArrayList<>();
 
-
-    public ActionAnalysis(String _initiator) {
-        super(_initiator);
+    public ActionAnalysis(String _initiator, AnalysisHandler _instance) {
+        super(_initiator, _instance);
     }
 
+
+
+
     void setup() {
+        
         Attempts = Attempts.stream()
                 .sorted(Comparator.comparing(Event::getDate))
                 .filter(evt -> !Arrays.asList(evt.getData()).contains("Dazed"))
