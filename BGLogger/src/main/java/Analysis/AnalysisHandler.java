@@ -34,6 +34,8 @@ public class AnalysisHandler {
         return "";
     }
     public AnalysisHandler(String initiator, String data) throws IOException{
+        analysis.add(new ActionAnalysis(initiator, this));
+        analysis.add(new DamageAnalysis(initiator, this));
         AddListeners();
         FileHandler.FileReaderFromBase64(eh, data);
         StartAnalysis();   
