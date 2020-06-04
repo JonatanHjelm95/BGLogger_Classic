@@ -70,8 +70,9 @@ public class AnalysisHandler {
     }
     
     void submitResult(Result res,Class<?> sender) {
+        System.out.println("Result submitter from: " +sender.getName());
         //TODO hand to frontend
-        
+        /**
         analysis.stream()
                 .filter(a -> Arrays.asList(a.getClass().getInterfaces()).contains(Plugable.class))
                 .forEach(a -> {
@@ -90,6 +91,6 @@ public class AnalysisHandler {
                                     Logger.getLogger(AnalysisHandler.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             });
-                });
+                });*/
     }
 }
