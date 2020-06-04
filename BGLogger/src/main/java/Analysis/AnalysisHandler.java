@@ -33,9 +33,9 @@ public class AnalysisHandler {
     public String getSubmittingPlayer() {
         return "";
     }
-    public AnalysisHandler(String initiator, String logPath) throws IOException{
+    public AnalysisHandler(String initiator, String data) throws IOException{
         AddListeners();
-        FileHandler.FileReader(eh, logPath);
+        FileHandler.FileReaderFromBase64(eh, data);
         StartAnalysis();   
     }
     

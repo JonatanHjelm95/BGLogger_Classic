@@ -6,9 +6,11 @@
 package MainTesting;
 
 import Analysis.ActionAnalysis;
+import Analysis.AnalysisHandler;
 import EventHandler.*;
 import Listeners.Listener;
 import Listeners.ListenerHolder;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -31,37 +33,31 @@ public class main {
 
     private static int test = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String path = "C:\\Users\\jonab\\.ssh\\4sem\\advProgramming\\BGLogger_Classic\\WowCombatLog.txt";
+        AnalysisHandler ah = new AnalysisHandler("Drillenissen", path);
         
         /*
-        
         eh.addListener(MyEventType.INPUT, new InputListener());
         eh.addListener(MyEventType.DUEL, new DuelListener());
-        
         ListenerInterface listener = (Event evt) ->{System.out.println("neeej! et lambda udtryk! "+test); test++;};
         eh.addListener(MyEventType.INPUT, listener);
         Event evt = new Input();
-        
         eh.addEvent(evt);
-
         System.out.println("Event Added");
-         
         ActionAnalysis act = new ActionAnalysis("metoo");
         EventHandler eh = new EventHandler();
         Class obj = act.getClass();
         Method[] methods = obj.getMethods();
         List<ListenerHolder> listners = new ArrayList<>();
         for (Method method : obj.getMethods()) {
-            if (method.isAnnotationPresent(Listener.class)) {
-                Listener l = method.getAnnotation(Listener.class);
-                listners.add(new ListenerHolder(method,act));     
-                eh.addListener(l.event(), new ListenerHolder(method,act));
-            }
+        if (method.isAnnotationPresent(Listener.class)) {
+        Listener l = method.getAnnotation(Listener.class);
+        listners.add(new ListenerHolder(method,act));
+        eh.addListener(l.event(), new ListenerHolder(method,act));
         }
-        
-        
+        }
         Event evt = new Input();
-        
         eh.addEvent(evt);
         //listners.get(0).invoke(null);
          */
