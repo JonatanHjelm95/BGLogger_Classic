@@ -31,6 +31,7 @@ public class AnalysisResource {
 
     @Context
     private UriInfo context;
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     /**
      * Creates a new instance of ReeeResource
@@ -41,16 +42,18 @@ public class AnalysisResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON})
-    public String analyze(String jsonString)  {
+    public String analyze(String jsonString) {
         JsonObject json = new JsonParser().parse(jsonString).getAsJsonObject();
         String initiator = json.get("initiator").getAsString();
         String data = json.get("data").getAsString();
         try {
             AnalysisHandler a = new AnalysisHandler(initiator, data);
+            return GSON.toJson("der er hul igennem");
+         
             //Return resultObject
         }
-        catch(IOException e){
-            return e.toString();
+        catch (IOException e) {
+            return GSON.toJson(e.toString());
         } catch (InterruptedException ex) {
             Logger.getLogger(AnalysisResource.class.getName()).log(Level.SEVERE, null, ex);
         }
