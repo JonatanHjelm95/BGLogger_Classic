@@ -11,6 +11,7 @@ import FileHandler.*;
 import Listeners.Listener;
 import Listeners.ListenerHolder;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -33,13 +34,16 @@ public class AnalysisHandler {
     public String getSubmittingPlayer() {
         return "";
     }
-    public AnalysisHandler(String initiator, String data) throws IOException{
+    public AnalysisHandler(String initiator, String data) throws IOException, InterruptedException{
         eh = new EventHandler();
         analysis.add(new ActionAnalysis(initiator, this));
         analysis.add(new DamageAnalysis(initiator, this));
         AddListeners();
-        System.out.println("filereading");
         FileHandler.FileReaderFromBase64(eh, data);
+        while (!eh.eventlogComplete()) {            
+            sleep(100);
+        }
+        StartAnalysis();
         //StartAnalysis();   
     }
     
@@ -59,7 +63,7 @@ public class AnalysisHandler {
     }
 
     public void StartAnalysis() {
-        System.out.println("starting the show.");
+        System.out.println("Event Que Processed. Starting Analysis:");
         analysis.stream()
                 .forEach(Analysis::start);
     }

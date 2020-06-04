@@ -54,7 +54,7 @@ public class Input implements Event {
 
     @Override
     public String getInitiator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Drillenissen";
     }
 
     @Override

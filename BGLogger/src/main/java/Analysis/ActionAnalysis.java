@@ -40,7 +40,7 @@ public class ActionAnalysis extends Analysis{
 
     @Override
     public void Setup() {
-        System.out.println("reee");
+        System.out.println("Starting analysis: " + this.getClass().getName());
         
         Attempts = Attempts.stream()
                 .sorted(Comparator.comparing(Event::getDate))
@@ -57,12 +57,14 @@ public class ActionAnalysis extends Analysis{
 
     @Override
     void run() {
-        if(Attempts.size()==0 ||Fails.size() == 0 || Succeses.size() == 0){
-            System.out.println("no senior");
-        }else{
-        System.out.println(Attempts.size());
+        
         double succesPercent = Succeses.size() / Attempts.size();
-        double succesFailScore = Succeses.size() / Fails.size();
+        try {
+            double succesFailScore = Succeses.size() / Fails.size();
+        } catch (Exception e) {
+            double succesFailScore = 0;
+        }
+        
         Long t0 = Attempts.get(0).getDate().getTime();
         
         Map <Double,Long> resAPM = new HashMap<>();
@@ -72,7 +74,9 @@ public class ActionAnalysis extends Analysis{
                 .collect(Collectors.groupingBy(k -> k, Collectors.counting()));               
         Plot plotAPM = new Plot();
         plotAPM.X = resAPM.keySet().toArray(new Double[resAPM.keySet().size()]);
-        plotAPM.Y = resAPM.values().toArray(new Double[resAPM.values().size()]);
+        
+        List<Double> l = resAPM.values().stream().map(s-> (double)s).collect(Collectors.toList());        
+        plotAPM.Y = l.toArray(new Double[l.size()]);
         plotAPM.Name ="Actions pr Minute";
         
         Map <Double,Long> resFPM = new HashMap<>();
@@ -82,7 +86,8 @@ public class ActionAnalysis extends Analysis{
                 .collect(Collectors.groupingBy(k -> k, Collectors.counting()));               
         Plot plotFPM = new Plot();
         plotFPM.X = resAPM.keySet().toArray(new Double[resFPM.keySet().size()]);
-        plotFPM.Y = resAPM.values().toArray(new Double[resFPM.values().size()]);
+        List<Double> l2 = resFPM.values().stream().map(s-> (double)s).collect(Collectors.toList());        
+        plotAPM.Y = l2.toArray(new Double[l.size()]);
         plotFPM.Name = "Failed/interuptet casts pr minute";
         
         Map <Double,Long> resCPM = new HashMap<>();
@@ -92,6 +97,8 @@ public class ActionAnalysis extends Analysis{
                 .collect(Collectors.groupingBy(k -> k, Collectors.counting()));               
         Plot plotCPM = new Plot();
         plotCPM.X = resCPM.keySet().toArray(new Double[resFPM.keySet().size()]);
+        List<Double> l3 = resCPM.values().stream().map(s-> (double)s).collect(Collectors.toList());        
+        plotAPM.Y = l3.toArray(new Double[l.size()]);
         plotCPM.Y = resCPM.values().toArray(new Double[resFPM.values().size()]);
         plotCPM.Name="Succesfull casts pr minute";
         
@@ -99,19 +106,19 @@ public class ActionAnalysis extends Analysis{
         DataLine d2 = new DataLine();
         d1.datapoint = succesPercent;
         d1.Name="Succes%";
-        d2.datapoint = succesFailScore;
+        //d2.datapoint = succesFailScore;
         d2.Name="SpellCast fail score";
         
         results.addData(d1);
         results.addData(d2);
         
         results.addPlot(plotAPM);
-        results.addPlot(plotFPM);
-        results.addPlot(plotCPM);
+        //results.addPlot(plotFPM);
+        //results.addPlot(plotCPM);
         
-        System.out.println("done did it daddy :)");
+
         instance.submitResult(results, this.getClass() );
-        }
+        
     }
 
     @Listener(event = MyEventType.SPELL_CAST_START)
@@ -123,7 +130,6 @@ public class ActionAnalysis extends Analysis{
 
     @Listener(event = MyEventType.SPELL_AURA_APPLIED)
     public void SuccesAura(Event evt) {
-        System.out.println(evt.getEventType());
         if (evt.getInitiator().equals(this.initiator)) {
             Succeses.add(evt);
             Attempts.add(evt);

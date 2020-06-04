@@ -32,6 +32,7 @@ public class FileHandler {
                 .forEach((i) -> {
                     eh.addEvent(i);
                 });
+        eh.endFile();
     }
 
     public static void FileReader(EventHandler eh, String path) throws FileNotFoundException, IOException {

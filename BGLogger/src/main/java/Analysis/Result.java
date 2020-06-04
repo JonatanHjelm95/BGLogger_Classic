@@ -7,6 +7,7 @@ package Analysis;
 
 import GrafikObjects.DataLine;
 import GrafikObjects.Plot;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,25 +15,27 @@ import java.util.List;
  * @author Martin
  */
 public class Result implements ResultInterface{
-
+    private List<Plot> plots = new ArrayList<>();
+    private List<DataLine> data = new ArrayList<>();
+    
     @Override
     public List<Plot> getPlots() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return plots;
     }
 
     @Override
     public void addPlot(Plot _plot) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        plots.add(_plot);
     }
 
     @Override
     public List<DataLine> getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return data;
     }
 
     @Override
     public void addData(DataLine _data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        data.add(_data);
     }
     
 }

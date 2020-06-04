@@ -29,22 +29,32 @@ public class EventHandler {
     public boolean Finished = false;
 
     private Map< MyEventType, List<ListenerHolder>> Listeners = new HashMap<>();
-
+    private boolean endOfFile = false;
+    private boolean eventsHandled = false;
     public EventHandler() {
         
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Runnable runnableTask = () -> {
             try {
-                while (true) {
+                while (!endOfFile || eventQue.size()>0) {
                     Event _event = getEvent();
                     invokeListeners(_event);
                 }
+                eventsHandled =true;
             } catch (Exception e) {
 
             }
         };
         executor.submit(runnableTask);
+        executor.shutdown();
     }
+    public void endFile(){
+        endOfFile =true;
+    }
+    public boolean eventlogComplete(){
+        return eventsHandled;
+    }
+    
     /*
     public static EventHandler getInstance() {
         if (Instance == null) {
@@ -104,21 +114,19 @@ public class EventHandler {
                 //List<ListenerHolder> _listeners = Listeners.get(MyEventType.ANY);
                 for (ListenerHolder _listener : Listeners.get(MyEventType.ANY)) {
                     _listener.invoke(_event);
-                    System.out.println("invoked a listener");
+                    System.out.println("invoked a listener: " + _listener.getClass().getName());
                 }
-                System.out.println("done");
             };
             executor.submit(task0);
         }
-        System.out.println(Listeners.get(_event.getEventType())== null );
+       
         if (Listeners.get(_event.getEventType())!= null) {
             Runnable task1 = () -> {
                 //List<ListenerHolder> _listeners = Listeners.get(_event.getEventType());
                 for (ListenerHolder _listener : Listeners.get(_event.getEventType())) {
                     _listener.invoke(_event);
-                    System.out.println("invoked a listener");
+                    System.out.println("invoked a listener: " + _listener.getClass().getName());
                 }
-                System.out.println("done");
             };
             executor.submit(task1);
         }
