@@ -23,8 +23,7 @@ import java.util.stream.*;
  */
 public class FileHandler {
 
-    public static void FileReader(String path) throws FileNotFoundException, IOException {
-        EventHandler eh = new EventHandler();
+    public static void FileReader(EventHandler eh, String path) throws FileNotFoundException, IOException {
         List<Input> list = new ArrayList();
         try {
             try (BufferedReader reader = Files.newBufferedReader(Paths.get(path))) {
@@ -37,6 +36,9 @@ public class FileHandler {
         for (Input i : list){
             eh.addEvent(i);
         }
+        
+        
+        
     }
 
     public static Input createInput(String line) {
@@ -58,6 +60,6 @@ public class FileHandler {
     public static void main(String[] args) throws IOException {
         //File file = new File("C:\\Users\\jonab\\Desktop\\WoWCombatLog.txt");
         String path = "C:\\Users\\jonab\\.ssh\\4sem\\advProgramming\\BGLogger_Classic\\WoWCombatLog.txt";
-        FileReader(path);
+        FileReader(new EventHandler(), path);
     }
 }
