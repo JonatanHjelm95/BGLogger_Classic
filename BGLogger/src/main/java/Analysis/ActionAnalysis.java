@@ -84,6 +84,7 @@ public class ActionAnalysis extends Analysis{
         plotCPM.X = resCPM.keySet().toArray(new Double[resFPM.keySet().size()]);
         plotCPM.Y = resCPM.values().toArray(new Double[resFPM.values().size()]);
 
+
     }
 
     @Listener(event = MyEventType.SPELL_CAST_START)

@@ -5,20 +5,32 @@
  */
 package EventHandler;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Martin
  */
 public class Input implements Event {
+
     private Date d;
-    private final MyEventType _type = MyEventType.SPELL_AURA_APPLIED;
+
+    private MyEventType _type;
     String _date;
     String _time;
     String[] _data;
-    private List<Integer> result;
+
+    public Input(String _date, String _time, String _data[], MyEventType _type) {
+        this._type = _type;
+        this._data = _data;
+        this._date = _date;
+        this._time = _time;
+    }
 
     @Override
     public MyEventType getEventType() {
@@ -26,15 +38,9 @@ public class Input implements Event {
     }
 
     @Override
-    public List<Integer> getResult() {
-        return result;
-    }
-
-    @Override
     public void setDate(Date date) {
         d = date; //To change body of generated methods, choose Tools | Templates.
     }
-
 
     @Override
     public void setTime(String time) {
@@ -53,13 +59,26 @@ public class Input implements Event {
 
     @Override
     public Date getDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            return new SimpleDateFormat("dd/MM").parse(_date);
+        } catch (ParseException ex) {
+            Logger.getLogger(Input.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Date();
     }
 
     @Override
     public String[] getData() {
+        return _data;
+    }
+
+    @Override
+    public <T> List<T> getResult() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
+    @Override
+    public String toString() {
+        return "Input{" + "d=" + d + ", _type=" + _type + ", _date=" + _date + ", _time=" + _time + ", _data=" + _data + '}';
+    }
 }
