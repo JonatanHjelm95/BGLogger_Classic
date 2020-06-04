@@ -67,7 +67,7 @@ public class AnalysisHandler {
         
     }
     
-    void returnResult(List<Double> res,Class<?> sender) throws IllegalAccessException {
+    void submitResult(Result res,Class<?> sender) {
         //TODO hand to frontend
         
         analysis.stream()

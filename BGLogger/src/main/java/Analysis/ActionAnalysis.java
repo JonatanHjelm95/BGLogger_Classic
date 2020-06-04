@@ -6,6 +6,7 @@
 package Analysis;
 
 import EventHandler.*;
+import GrafikObjects.DataLine;
 import GrafikObjects.Plot;
 import Listeners.*;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class ActionAnalysis extends Analysis{
     List<Event> Attempts = new ArrayList<>();
     List<Event> Succeses = new ArrayList<>();
     List<Event> Fails = new ArrayList<>();
+    Result results = new Result();
 
     public ActionAnalysis(String _initiator, AnalysisHandler _instance) {
         super(_initiator, _instance);
@@ -65,6 +67,7 @@ public class ActionAnalysis extends Analysis{
         Plot plotAPM = new Plot();
         plotAPM.X = resAPM.keySet().toArray(new Double[resAPM.keySet().size()]);
         plotAPM.Y = resAPM.values().toArray(new Double[resAPM.values().size()]);
+        plotAPM.Name ="Actions pr Minute";
         
         Map <Double,Long> resFPM = new HashMap<>();
         resFPM = Fails.stream().map(s->(s.getDate().getTime()-t0) )
@@ -74,6 +77,7 @@ public class ActionAnalysis extends Analysis{
         Plot plotFPM = new Plot();
         plotFPM.X = resAPM.keySet().toArray(new Double[resFPM.keySet().size()]);
         plotFPM.Y = resAPM.values().toArray(new Double[resFPM.values().size()]);
+        plotFPM.Name = "Failed/interuptet casts pr minute";
         
         Map <Double,Long> resCPM = new HashMap<>();
         resCPM = Fails.stream().map(s->(s.getDate().getTime()-t0) )
@@ -83,8 +87,23 @@ public class ActionAnalysis extends Analysis{
         Plot plotCPM = new Plot();
         plotCPM.X = resCPM.keySet().toArray(new Double[resFPM.keySet().size()]);
         plotCPM.Y = resCPM.values().toArray(new Double[resFPM.values().size()]);
+        plotCPM.Name="Succesfull casts pr minute";
+        
+        DataLine d1 = new DataLine();
+        DataLine d2 = new DataLine();
+        d1.datapoint = succesPercent;
+        d1.Name="Succes%";
+        d2.datapoint = succesFailScore;
+        d2.Name="SpellCast fail score";
+        
+        results.addData(d1);
+        results.addData(d2);
+        
+        results.addPlot(plotAPM);
+        results.addPlot(plotFPM);
+        results.addPlot(plotCPM);
 
-
+        instance.submitResult(results, this.getClass());
     }
 
     @Listener(event = MyEventType.SPELL_CAST_START)

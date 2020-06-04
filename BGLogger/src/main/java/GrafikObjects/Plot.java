@@ -15,4 +15,5 @@ public class Plot {
     public String[] XLabel;
     public String[] YLabel;
     public String[] Legend;
+    public String Name;
 }

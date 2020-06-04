@@ -13,5 +13,6 @@ import java.util.List;
  */
 public class DataLine {
     public String Name;
+    public double datapoint;
     public List<Double> data;
 }
