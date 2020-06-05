@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -32,13 +33,16 @@ public class AnalysisResource {
     @Context
     private UriInfo context;
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
-    /**
-     * Creates a new instance of ReeeResource
-     */
-    public AnalysisResource() {
+    
+    
+    @Path("test")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String test(){
+        return GSON.toJson("It works!");
     }
-
+    
+    @Path("postlog")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON})
